@@ -20,8 +20,7 @@
     <link href="/assets/website/js/frontend/v2rayc/swiper/swiper-bundle.min.css" rel="stylesheet">
     <!-- Template Main CSS File -->
     <link href="/assets/website/css/v2rayc/style.css" rel="stylesheet">
-    
-<!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ES4W43FQ84"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -71,7 +70,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
-                                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h3 id="项目背景">项目背景</h3> <h3 id="title"></h3> <p>最近的项目是一个通用的播放框架。内部集成了目前市面上主流的视频网站的播放sdk，比如爱奇艺、腾讯、华数等。另外，还需要支持明流的url播放。这个通用的播放框架需要在多个项目中使用，各个项目需要支持的播放方式也是不一样的。有的项目只需要支持url播放，有的项目需要支持所有的播放方式。如果统一的只提供一个jar或者aar，将导致只需要url播放的应用也需要集成一个巨大无比的库。而且，这个库里，so和资源文件体积都很大，无法通过proguard的方式减小体积。所以，有必要实现一种简单的方式，让项目能够自己配置需要集成的第三方库，以支持多个项目不同的播放需求。</p> <hr/> <h3 id="如何集成">如何集成？</h3> <h3 id="title-1"></h3> <p>普通的maven方式集成第三方库简单方便，但是无法实现上述需求。当然，你可以自己设计一个专门的打包脚本，针对多个不同的需求，打包不同的第三方sdk，然后上传到maven仓库给其它项目使用。但是随着需求的复杂化和集成第三方sdk的增多，你需要维护的库文件将指数级增长。<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://blog.csdn.net/mountains2001/article/details/72638009"  rel="nofollow">submodule集成第三方库</a>提供了一种相当灵活的集成方式。但是并没有解决上一节中提到的问题。</p> <hr/> <h3 id="如何动态配置依赖">如何动态配置依赖？</h3> <h3 id="title-2"></h3> <p>下面以第一节提到的播放框架来做示例。在这个示例中，播放框架支持url、wasu、qiyi和tencent共四种视频资源的播放，demo中只配置了其中的3种url、wasu和qiyi，tencent的sdk并未被打包到demo中。</p> <ul> <li> <p>项目结构如下图： <br /><img decoding="async" src="http://img.555519.xyz/uploads/20230205/5fa5deeacd7bce0485c2cc4d6796af16.jpg" alt="submodule + gradle配置实现动态打包"></p> <p>BaseLibs是一个被很多项目依赖的项目，内部包含了一个测试demo、一个logger模块和一个widget模块。widget就是我们在第一节中提到的统一播放框架。</p> </li> <li> <p>widget模块的目录结构如下图： <br /><img decoding="async" src="http://img.555519.xyz/uploads/20230205/e27036319e9f440b0cf4ee8839abd271.jpg" alt="submodule + gradle配置实现动态打包"></p> <p>src目录存放播放框架的代码，sdk目录存放第三方sdk的so、jar和assets，libs里存放框架代码必须依赖的jar和aar文件。</p> </li> <li> <p>widget模块的gradle配置如下图： <br /><img decoding="async" src="http://img.555519.xyz/uploads/20230205/e7a4958cbc26b39666a71d1b08c5a2f9.jpg" alt="submodule + gradle配置实现动态打包"></p> <p>图中的配置，省略了通用配置，只列出了3个关键部分。</p> <p>1、从gradle.ext中获取外部定义的video_licenses数据。如果外部没有定义，则取默认的licenses。 <br /> 2、sourceSets中，遍历licenses数组，并针对每一个license，将其对应的so库和assets文件加入编译。 <br /> 3、dependencies中，遍历所有的licenses，针对每一个license对应的jar文件，根据配置采用provided或者compile方式编译打包。</p> </li> <li> <p>demo模块的gradle配置如下图： <br /><img decoding="async" src="http://img.555519.xyz/uploads/20230205/3d5a3441d3a7c6b42f815969c1521110.jpg" alt="submodule + gradle配置实现动态打包"></p> </li> </ul> <hr/> <h3 id="总结">总结</h3> <h3 id="title-3"></h3> <p>结合<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://blog.csdn.net/mountains2001/article/details/72638009%20%E2%80%9C123%E2%80%9D"  rel="nofollow">submodule集成第三方库</a>和gradle的配置脚本，轻松实现了按需打包。</p> </p></div> 			                <div class="clearfix"></div>
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h3 id="项目背景">项目背景</h3> <h3 id="title"></h3> <p>最近的项目是一个通用的播放框架。内部集成了目前市面上主流的视频网站的播放sdk，比如爱奇艺、腾讯、华数等。另外，还需要支持明流的url播放。这个通用的播放框架需要在多个项目中使用，各个项目需要支持的播放方式也是不一样的。有的项目只需要支持url播放，有的项目需要支持所有的播放方式。如果统一的只提供一个jar或者aar，将导致只需要url播放的应用也需要集成一个巨大无比的库。而且，这个库里，so和资源文件体积都很大，无法通过proguard的方式减小体积。所以，有必要实现一种简单的方式，让项目能够自己配置需要集成的第三方库，以支持多个项目不同的播放需求。</p> <hr/> <h3 id="如何集成">如何集成？</h3> <h3 id="title-1"></h3> <p>普通的maven方式集成第三方库简单方便，但是无法实现上述需求。当然，你可以自己设计一个专门的打包脚本，针对多个不同的需求，打包不同的第三方sdk，然后上传到maven仓库给其它项目使用。但是随着需求的复杂化和集成第三方sdk的增多，你需要维护的库文件将指数级增长。<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://blog.csdn.net/mountains2001/article/details/72638009"  rel="nofollow">submodule集成第三方库</a>提供了一种相当灵活的集成方式。但是并没有解决上一节中提到的问题。</p> <hr/> <h3 id="如何动态配置依赖">如何动态配置依赖？</h3> <h3 id="title-2"></h3> <p>下面以第一节提到的播放框架来做示例。在这个示例中，播放框架支持url、wasu、qiyi和tencent共四种视频资源的播放，demo中只配置了其中的3种url、wasu和qiyi，tencent的sdk并未被打包到demo中。</p> <ul> <li> <p>项目结构如下图： <br /><img decoding="async" src="http://img.555519.xyz/uploads/20230205/5fa5deeacd7bce0485c2cc4d6796af16.jpg" alt="submodule + gradle配置实现动态打包"></p> <p>BaseLibs是一个被很多项目依赖的项目，内部包含了一个测试demo、一个logger模块和一个widget模块。widget就是我们在第一节中提到的统一播放框架。</p> </li> <li> <p>widget模块的目录结构如下图： <br /><img decoding="async" src="http://img.555519.xyz/uploads/20230205/e27036319e9f440b0cf4ee8839abd271.jpg" alt="submodule + gradle配置实现动态打包"></p> <p>src目录存放播放框架的代码，sdk目录存放第三方sdk的so、jar和assets，libs里存放框架代码必须依赖的jar和aar文件。</p> </li> <li> <p>widget模块的gradle配置如下图： <br /><img decoding="async" src="http://img.555519.xyz/uploads/20230205/e7a4958cbc26b39666a71d1b08c5a2f9.jpg" alt="submodule + gradle配置实现动态打包"></p> <p>图中的配置，省略了通用配置，只列出了3个关键部分。</p> <p>1、从gradle.ext中获取外部定义的video_licenses数据。如果外部没有定义，则取默认的licenses。 <br /> 2、sourceSets中，遍历licenses数组，并针对每一个license，将其对应的so库和assets文件加入编译。 <br /> 3、dependencies中，遍历所有的licenses，针对每一个license对应的jar文件，根据配置采用provided或者compile方式编译打包。</p> </li> <li> <p>demo模块的gradle配置如下图： <br /><img decoding="async" src="http://img.555519.xyz/uploads/20230205/3d5a3441d3a7c6b42f815969c1521110.jpg" alt="submodule + gradle配置实现动态打包"></p> </li> </ul> <hr/> <h3 id="总结">总结</h3> <h3 id="title-3"></h3> <p>结合<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://blog.csdn.net/mountains2001/article/details/72638009%20%E2%80%9C123%E2%80%9D"  rel="nofollow">submodule集成第三方库</a>和gradle的配置脚本，轻松实现了按需打包。</p> </p></div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-26905.htm">动物防疫站周末休息吗 动物防疫站周末休息吗北京</a></p>
                                         <p>下一个：<a href="/news/article-27360.htm">1970年农历四月二十七是什么星座女（1970年阴历四月二十四阳历是多少号）</a></p>
@@ -84,16 +84,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-23188.htm" title="美联众合动物医院在线咨询 美联众合动物医院总部电话">美联众合动物医院在线咨询 美联众合动物医院总部电话</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-29-free-node-subscribe.htm" title="11月29日→18.5M/S|2024年最新免费节点V2rayC订阅链接地址">11月29日→18.5M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-15-free-node-subscribe.htm" title="12月15日→19.6M/S|2024年最新免费节点V2rayC订阅链接地址">12月15日→19.6M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-24119.htm" title="猫不打疫苗有什么后果（猫不打疫苗危险吗）">猫不打疫苗有什么后果（猫不打疫苗危险吗）</a></li>
+                        <li class="py-2"><a href="/news/article-19066.htm" title="动物疫苗上市企业名单（动物疫苗上市a股龙头）">动物疫苗上市企业名单（动物疫苗上市a股龙头）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-27-node-share-links.htm" title="11月27日→19M/S|2024年最新免费节点V2rayC订阅链接地址">11月27日→19M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-27360.htm" title="1970年农历四月二十七是什么星座女（1970年阴历四月二十四阳历是多少号）">1970年农历四月二十七是什么星座女（1970年阴历四月二十四阳历是多少号）</a></li>
+                        <li class="py-2"><a href="/news/article-21353.htm" title="狗狗疫苗可以自己打不（狗的疫苗能自己打吗）">狗狗疫苗可以自己打不（狗的疫苗能自己打吗）</a></li>
                         <li class="py-2"><a href="/free-nodes/2024-11-22-free-high-speed-nodes.htm" title="V2rayC节点订阅每天更新18.4M/S免费节点订阅链接">V2rayC节点订阅每天更新18.4M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-26-node-share-links.htm" title="11月26日→22.5M/S|2024年最新免费节点V2rayC订阅链接地址">11月26日→22.5M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-28-free-subscribe-node.htm" title="11月28日→22.6M/S|2024年最新免费节点V2rayC订阅链接地址">11月28日→22.6M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-3-free-node-subscribe-links.htm" title="12月3日→20.8M/S|2024年最新免费节点V2rayC订阅链接地址">12月3日→20.8M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-2-free-node-subscribe.htm" title="12月2日→20.9M/S|2024年最新免费节点V2rayC订阅链接地址">12月2日→20.9M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-16-free-subscribe-node.htm" title="12月16日→22M/S|2024年最新免费节点V2rayC订阅链接地址">12月16日→22M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-10-free-subscribe-node.htm" title="12月10日→20.2M/S|2024年最新免费节点V2rayC订阅链接地址">12月10日→20.2M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-20443.htm" title="央视推荐过的国产猫粮品牌 央视推荐过的国产猫粮品牌有哪些">央视推荐过的国产猫粮品牌 央视推荐过的国产猫粮品牌有哪些</a></li>
+                        <li class="py-2"><a href="/news/article-20442.htm" title="被猫抓伤怎样判断用不用打狂犬疫苗（被猫抓伤怎么确定有没有狂犬病）">被猫抓伤怎样判断用不用打狂犬疫苗（被猫抓伤怎么确定有没有狂犬病）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-11-free-subscribe-node.htm" title="12月11日→21.6M/S|2024年最新免费节点V2rayC订阅链接地址">12月11日→21.6M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-25966.htm" title="宠物鲜粮市场前景预测表（宠物粮市场分析）">宠物鲜粮市场前景预测表（宠物粮市场分析）</a></li>
                     </ul>
     </div>
 </div>
@@ -105,7 +105,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">54</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">13</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
