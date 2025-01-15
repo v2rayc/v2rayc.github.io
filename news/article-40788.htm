@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2rayc.github.io/news/article-40788.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>vue实现拖拽窗口功能_vue.js</title>
+        <meta name="description" content="本文实例为大家分享了vue拖拽窗口简单实现代码，供大家参考，具体内容如下 效果  实现代码  &lt;template&gt;    &lt;transition&gt;      &lt;!--  " />
+        <link rel="icon" href="/assets/website/img/v2rayc/favicon.ico" type="image/x-icon"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/v2rayc/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2rayc/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ES4W43FQ84"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ES4W43FQ84');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top header-inner-pages">
+        <div class="container d-flex align-items-center">
+            <a href="/">
+                            <span class="logo me-auto">V2ray C</span>
+                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                        <li><a class="nav-link" href="#">关于</a></li>
+                    <li><a class="nav-link" href="#">联系</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>vue实现拖拽窗口功能_vue.js</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= About Us Section ======= -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<p>本文实例为大家分享了vue拖拽窗口简单实现代码，供大家参考，具体内容如下</p> <p>效果</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/b3afb7c6f9d94680097c56cfc9b96b29.jpg"></p> <p>实现代码</p> <div class="ay1code"> <pre class="brush:xhtml;">&lt;template&gt;    &lt;transition&gt;      &lt;!--    绑定style中top和left--&gt;      &lt;div class="moveBox" :style="position" v-show="show"&gt;        &lt;div          class="moveHead"          @mousedown="mousedown"          @mousemove="mousemove"          @mouseup="mouseup"          @mouseleave="mousemove"        &gt;&lt;/div&gt;        &lt;!--      关闭按钮--&gt;        &lt;div class="close" @click="toggleShow"&gt;×&lt;/div&gt;        &lt;div class="content"&gt;          &lt;!--插槽--&gt;          &lt;slot&gt;&lt;/slot&gt;        &lt;/div&gt;      &lt;/div&gt;    &lt;/transition&gt;  &lt;/template&gt;    &lt;script&gt;  export default {    name: "moveBox",    data() {      return {        show: true,//是否显示        x: 100,//left:x        y: 50,//top:y        leftOffset: 0,//鼠标距离移动窗口左侧偏移量        topOffset: 0,//鼠标距离移动窗口顶部偏移量        isMove: false,//是否移动标识      };    },    computed: {      //top与left加上px      position() {        return `top:${this.y}px;left:${this.x}px;`;      },    },    methods: {      //控制打开关闭      toggleShow() {        this.x = 100;        this.y = 50;        this.show = !this.show;      },      mousedown(event) {        //鼠标按下事件        this.leftOffset = event.offsetX;        this.topOffset = event.offsetY;        this.isMove = true;      },      //鼠标移动      mousemove(event) {        if (!this.isMove) {          return;        }        this.x = event.clientX - this.leftOffset;        this.y = event.clientY - this.topOffset;      },      //鼠标抬起      mouseup() {        this.isMove = false;      },    },  };  &lt;/script&gt;    &lt;style lang="less" scoped&gt;  .moveBox {    width: 500px;    height: 300px;    position: fixed;    box-shadow: 0 0 5px 3px #95a5a6;    .moveHead {      height: 30px;      background-color: #bdc3c7;      cursor: move;    }    .close {      position: absolute;      right: 0;      top: 0;      line-height: 30px;      font-size: 24px;      cursor: pointer;      display: block;      width: 30px;      height: 30px;      text-align: center;    }  }  .v-enter,  .v-leave-to {    opacity: 0;    transform: scale(0.5);  }  .content {    padding: 10px;  }  .v-enter-active,  .v-leave-active {    transition: all 0.5s ease;  }  &lt;/style&gt;</pre> </div> <p>使用</p> <div class="ay1code"> <pre class="brush:xhtml;">&lt;template&gt;    &lt;div class="home"&gt;      &lt;button @click="$refs.moveBox.toggleShow()"&gt;toggle moveBox&lt;/button&gt;      &lt;move-box ref="moveBox"&gt;        Hello World      &lt;/move-box&gt;    &lt;/div&gt;  &lt;/template&gt;</pre> </div> <p>代码没什么难度，主要是使用了定位，在鼠标移动事件中定义top和left值。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-40786.htm">树的同构 Java</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-26-node-share-links.htm" title="11月26日→22.5M/S|2024年最新免费节点V2rayC订阅链接地址">11月26日→22.5M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-37339.htm" title="纳豆红曲什么品牌好(纳豆红曲国产十大排名)">纳豆红曲什么品牌好(纳豆红曲国产十大排名)</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-free-high-speed-nodes.htm" title="11月30日→18.9M/S|2024年最新免费节点V2rayC订阅链接地址">11月30日→18.9M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-26-free-node-subscribe-links.htm" title="12月26日→22M/S|2024年最新免费节点V2rayC订阅链接地址分享">12月26日→22M/S|2024年最新免费节点V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-3-free-node-subscribe-links.htm" title="12月3日→20.8M/S|2024年最新免费节点V2rayC订阅链接地址">12月3日→20.8M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-22-free-high-speed-nodes.htm" title="V2rayC节点订阅每天更新18.4M/S免费节点订阅链接">V2rayC节点订阅每天更新18.4M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-15-free-node-subscribe.htm" title="12月15日→19.6M/S|2024年最新免费节点V2rayC订阅链接地址">12月15日→19.6M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-25510.htm" title="养猫是不是对人不好（养猫对人有什么影响吗）">养猫是不是对人不好（养猫对人有什么影响吗）</a></li>
+                        <li class="py-2"><a href="/news/article-36369.htm" title="动物医院牌子设计（动物医院牌匾设计）">动物医院牌子设计（动物医院牌匾设计）</a></li>
+                        <li class="py-2"><a href="/news/article-21354.htm" title="开宠物店亏损多吗（开宠物店挣钱不）">开宠物店亏损多吗（开宠物店挣钱不）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">45</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">13</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End About Us Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container footer-bottom clearfix">
+            <div class="copyright">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                <a href="/">V2rayC免费节点分享中文站</a> 版权所有 Powered by WordPress
+            </div>
+            <div class="credits"></div>
+        </div>
+    </footer><!-- End Footer -->
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2rayc/jquery-2.1.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/swiper/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/waypoints/noframework.waypoints.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2rayc/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+
+</body>
+
+</html>
