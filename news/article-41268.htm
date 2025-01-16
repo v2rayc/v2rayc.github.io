@@ -2,11 +2,11 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://v2rayc.github.io/news/article-40788.htm" />
+        <link rel="canonical" href="https://v2rayc.github.io/news/article-41268.htm" />
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>vue实现拖拽窗口功能_vue.js</title>
-        <meta name="description" content="本文实例为大家分享了vue拖拽窗口简单实现代码，供大家参考，具体内容如下 效果  实现代码  &lt;template&gt;    &lt;transition&gt;      &lt;!--  " />
+    <title>SpringBoot生成docx文件并返回其Base64编码</title>
+        <meta name="description" content="直接上源码，      @ResponseBody     @RequestMapping(value = "/getDocx", method = RequestMethod.GET)     pu" />
         <link rel="icon" href="/assets/website/img/v2rayc/favicon.ico" type="image/x-icon"/>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -62,7 +62,7 @@
                     <li><a href="/news/">新闻资讯</a></li>
                     <li>正文</li>
                 </ol>
-                <h1>vue实现拖拽窗口功能_vue.js</h1>
+                <h1>SpringBoot生成docx文件并返回其Base64编码</h1>
             </div>
         </section><!-- End Breadcrumbs -->
         <!-- ======= About Us Section ======= -->
@@ -71,10 +71,9 @@
                 <div class="row">
                     <div class="col-md-9">
                                         <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
-                  				  				  				<p>本文实例为大家分享了vue拖拽窗口简单实现代码，供大家参考，具体内容如下</p> <p>效果</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/b3afb7c6f9d94680097c56cfc9b96b29.jpg"></p> <p>实现代码</p> <div class="ay1code"> <pre class="brush:xhtml;">&lt;template&gt;    &lt;transition&gt;      &lt;!--    绑定style中top和left--&gt;      &lt;div class="moveBox" :style="position" v-show="show"&gt;        &lt;div          class="moveHead"          @mousedown="mousedown"          @mousemove="mousemove"          @mouseup="mouseup"          @mouseleave="mousemove"        &gt;&lt;/div&gt;        &lt;!--      关闭按钮--&gt;        &lt;div class="close" @click="toggleShow"&gt;×&lt;/div&gt;        &lt;div class="content"&gt;          &lt;!--插槽--&gt;          &lt;slot&gt;&lt;/slot&gt;        &lt;/div&gt;      &lt;/div&gt;    &lt;/transition&gt;  &lt;/template&gt;    &lt;script&gt;  export default {    name: "moveBox",    data() {      return {        show: true,//是否显示        x: 100,//left:x        y: 50,//top:y        leftOffset: 0,//鼠标距离移动窗口左侧偏移量        topOffset: 0,//鼠标距离移动窗口顶部偏移量        isMove: false,//是否移动标识      };    },    computed: {      //top与left加上px      position() {        return `top:${this.y}px;left:${this.x}px;`;      },    },    methods: {      //控制打开关闭      toggleShow() {        this.x = 100;        this.y = 50;        this.show = !this.show;      },      mousedown(event) {        //鼠标按下事件        this.leftOffset = event.offsetX;        this.topOffset = event.offsetY;        this.isMove = true;      },      //鼠标移动      mousemove(event) {        if (!this.isMove) {          return;        }        this.x = event.clientX - this.leftOffset;        this.y = event.clientY - this.topOffset;      },      //鼠标抬起      mouseup() {        this.isMove = false;      },    },  };  &lt;/script&gt;    &lt;style lang="less" scoped&gt;  .moveBox {    width: 500px;    height: 300px;    position: fixed;    box-shadow: 0 0 5px 3px #95a5a6;    .moveHead {      height: 30px;      background-color: #bdc3c7;      cursor: move;    }    .close {      position: absolute;      right: 0;      top: 0;      line-height: 30px;      font-size: 24px;      cursor: pointer;      display: block;      width: 30px;      height: 30px;      text-align: center;    }  }  .v-enter,  .v-leave-to {    opacity: 0;    transform: scale(0.5);  }  .content {    padding: 10px;  }  .v-enter-active,  .v-leave-active {    transition: all 0.5s ease;  }  &lt;/style&gt;</pre> </div> <p>使用</p> <div class="ay1code"> <pre class="brush:xhtml;">&lt;template&gt;    &lt;div class="home"&gt;      &lt;button @click="$refs.moveBox.toggleShow()"&gt;toggle moveBox&lt;/button&gt;      &lt;move-box ref="moveBox"&gt;        Hello World      &lt;/move-box&gt;    &lt;/div&gt;  &lt;/template&gt;</pre> </div> <p>代码没什么难度，主要是使用了定位，在鼠标移动事件中定义top和left值。</p> 			                <div class="clearfix"></div>
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>直接上源码，</p> <pre class="has"><code class="language-java">     @ResponseBody     @RequestMapping(value = "/getDocx", method = RequestMethod.GET)     public String getDocumentBase64(@RequestBody JSONObject jsonParam, HttpServletResponse res){         String fileName = "default.docx";          String base64String = "";         InputStream in = null;         byte[] fileByte = null;          try{             JSONObject massageJson = jsonParam.getJSONObject("massage");               // 生成乱码名             String documentTreesJson = jsonParam.getJSONObject("data").toJSONString();             fileName = massageJson.getString("userName") + "__" + massageJson.getString("fileSuffix")                     + "__" + RandomUtil.getRandomString(32) + ".docx";             // 生成docx 到fileName             DocumentUtil.GenerateDocument(documentTreesJson, fileName);              in = new FileInputStream(fileName);     //通过打开一个到实际文件的连接来创建一个FileInputStream，该文件通过文件系统中的路径名 name 指定。             int size = in.available();              // 返回下一次对此输入流调用的方法可以不受阻塞地从此输入流读取（或跳过）的估计剩余字节数。             fileByte = new byte[size];             in.read(fileByte);                      //从此输入流中将最多 size 个字节的数据读入一个 imageByte字节 数组中。             in.close();                             //关闭此文件输入流并释放与此流有关的所有系统资源。          }catch (Docx4JException e){             System.out.println("生成docx文件失败，Json：" + jsonParam.toJSONString());          }catch (Exception e){             System.out.println("创建输出流失败，Json：" + jsonParam.toJSONString());             JSONObject massageJson = jsonParam.getJSONObject("massage");             String documentTreesJson = jsonParam.getString("data");             System.out.println(massageJson.toJSONString());             System.out.println("data： " + documentTreesJson);          } finally{             BASE64Encoder encoder = new BASE64Encoder();              base64String = encoder.encode(fileByte);// 对字节数组转换成Base64字符串             if(!IOUtil.delFile(new File(fileName))){                 System.err.println("文件未成功删除");             }         } //        System.out.println(base64String);         return base64String;      }</code></pre> </div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
-                                        <p>上一个：<a href="/news/article-40786.htm">树的同构 Java</a></p>
-                                        <p>下一个：<a href="/news/article-41267.htm">1-spring boot&#8211;FailureAnalyzer</a></p>
+                                        <p>上一个：<a href="/news/article-41267.htm">1-spring boot&#8211;FailureAnalyzer</a></p>
                                     </div>
                                     </div>
                     <div class="col-md-3">
@@ -84,16 +83,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2025-1-13-free-v2ray.htm" title="1月13日→20.7M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">1月13日→20.7M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/news/article-21818.htm" title="开一个宠物寄养店怎么样（开一家宠物寄养店）">开一个宠物寄养店怎么样（开一家宠物寄养店）</a></li>
-                        <li class="py-2"><a href="/news/article-36305.htm" title="上海各区宠物医院排名榜（上海各区宠物医院排名榜最新）">上海各区宠物医院排名榜（上海各区宠物医院排名榜最新）</a></li>
-                        <li class="py-2"><a href="/news/article-37818.htm" title="开一个宠物店大概需要多少钱呢知乎（开一个宠物店需要投资多少钱）">开一个宠物店大概需要多少钱呢知乎（开一个宠物店需要投资多少钱）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-1-free-subscribe-node.htm" title="12月1日→21.6M/S|2024年最新免费节点V2rayC订阅链接地址">12月1日→21.6M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
                         <li class="py-2"><a href="/news/article-38815.htm" title="动物疫苗厂家排名前十名有哪些品种的（动物疫苗生产厂家排名）">动物疫苗厂家排名前十名有哪些品种的（动物疫苗生产厂家排名）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-8-free-high-speed-nodes.htm" title="12月8日→19.5M/S|2024年最新免费节点V2rayC订阅链接地址">12月8日→19.5M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-18675.htm" title="宠物粮食市场报告分析怎么写（宠物粮食销售）">宠物粮食市场报告分析怎么写（宠物粮食销售）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-15-free-subscribe-node.htm" title="1月15日→19.5M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">1月15日→19.5M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-33498.htm" title="宠物医院美团好评50字通用评论 宠物医院美团好评50字通用评论怎么写">宠物医院美团好评50字通用评论 宠物医院美团好评50字通用评论怎么写</a></li>
+                        <li class="py-2"><a href="/news/article-19529.htm" title="动物疫苗稀释液首选（动物疫苗制备流程）">动物疫苗稀释液首选（动物疫苗制备流程）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-6-node-share-links.htm" title="12月6日→21.7M/S|2024年最新免费节点V2rayC订阅链接地址">12月6日→21.7M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
                         <li class="py-2"><a href="/news/article-37338.htm" title="日本强震已致124人伤(世界周刊日本地震)">日本强震已致124人伤(世界周刊日本地震)</a></li>
-                        <li class="py-2"><a href="/news/article-40297.htm" title="Java基础|Java8接口新特性">Java基础|Java8接口新特性</a></li>
-                        <li class="py-2"><a href="/news/article-22728.htm" title="数据库篇：mysql事务原理之MVCC视图+锁">数据库篇：mysql事务原理之MVCC视图+锁</a></li>
-                        <li class="py-2"><a href="/news/article-21353.htm" title="狗狗疫苗可以自己打不（狗的疫苗能自己打吗）">狗狗疫苗可以自己打不（狗的疫苗能自己打吗）</a></li>
+                        <li class="py-2"><a href="/news/article-24557.htm" title="宠物店驱虫一次90元贵吗（一般宠物店驱虫药卖多少钱一颗?）">宠物店驱虫一次90元贵吗（一般宠物店驱虫药卖多少钱一颗?）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-5-node-share-links.htm" title="12月5日→18.7M/S|2024年最新免费节点V2rayC订阅链接地址">12月5日→18.7M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
                     </ul>
     </div>
 </div>
