@@ -8,6 +8,17 @@
     <title>SpringBoot生成docx文件并返回其Base64编码</title>
         <meta name="description" content="直接上源码，      @ResponseBody     @RequestMapping(value = "/getDocx", method = RequestMethod.GET)     pu" />
         <link rel="icon" href="/assets/website/img/v2rayc/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2rayC免费节点分享中文站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2rayc.github.io/news/article-41268.htm" />
+    <meta property="og:site_name" content="V2rayC免费节点分享中文站" />
+    <meta property="og:title" content="SpringBoot生成docx文件并返回其Base64编码" />
+    <meta property="og:image" content="https://v2rayc.github.io/uploads/20241122/91fe29b1e229deb38d99e6921bc5984c.webp" />
+        <meta property="og:release_date" content="2025-01-16T09:10:38" />
+    <meta property="og:updated_time" content="2025-01-16T09:10:38" />
+        <meta property="og:description" content="直接上源码，      @ResponseBody     @RequestMapping(value = "/getDocx", method = RequestMethod.GET)     pu" />
+        
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     <!-- Vendor CSS Files -->
@@ -74,6 +85,7 @@
                   				  				  				<div id="content_views" class="htmledit_views"> <p>直接上源码，</p> <pre class="has"><code class="language-java">     @ResponseBody     @RequestMapping(value = "/getDocx", method = RequestMethod.GET)     public String getDocumentBase64(@RequestBody JSONObject jsonParam, HttpServletResponse res){         String fileName = "default.docx";          String base64String = "";         InputStream in = null;         byte[] fileByte = null;          try{             JSONObject massageJson = jsonParam.getJSONObject("massage");               // 生成乱码名             String documentTreesJson = jsonParam.getJSONObject("data").toJSONString();             fileName = massageJson.getString("userName") + "__" + massageJson.getString("fileSuffix")                     + "__" + RandomUtil.getRandomString(32) + ".docx";             // 生成docx 到fileName             DocumentUtil.GenerateDocument(documentTreesJson, fileName);              in = new FileInputStream(fileName);     //通过打开一个到实际文件的连接来创建一个FileInputStream，该文件通过文件系统中的路径名 name 指定。             int size = in.available();              // 返回下一次对此输入流调用的方法可以不受阻塞地从此输入流读取（或跳过）的估计剩余字节数。             fileByte = new byte[size];             in.read(fileByte);                      //从此输入流中将最多 size 个字节的数据读入一个 imageByte字节 数组中。             in.close();                             //关闭此文件输入流并释放与此流有关的所有系统资源。          }catch (Docx4JException e){             System.out.println("生成docx文件失败，Json：" + jsonParam.toJSONString());          }catch (Exception e){             System.out.println("创建输出流失败，Json：" + jsonParam.toJSONString());             JSONObject massageJson = jsonParam.getJSONObject("massage");             String documentTreesJson = jsonParam.getString("data");             System.out.println(massageJson.toJSONString());             System.out.println("data： " + documentTreesJson);          } finally{             BASE64Encoder encoder = new BASE64Encoder();              base64String = encoder.encode(fileByte);// 对字节数组转换成Base64字符串             if(!IOUtil.delFile(new File(fileName))){                 System.err.println("文件未成功删除");             }         } //        System.out.println(base64String);         return base64String;      }</code></pre> </div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-41267.htm">1-spring boot&#8211;FailureAnalyzer</a></p>
+                                        <p>下一个：<a href="/news/article-41779.htm">土狗一黄二黑三白四花（黄白黑三色狗）</a></p>
                                     </div>
                                     </div>
                     <div class="col-md-3">
@@ -83,16 +95,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-38815.htm" title="动物疫苗厂家排名前十名有哪些品种的（动物疫苗生产厂家排名）">动物疫苗厂家排名前十名有哪些品种的（动物疫苗生产厂家排名）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-8-free-high-speed-nodes.htm" title="12月8日→19.5M/S|2024年最新免费节点V2rayC订阅链接地址">12月8日→19.5M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-26904.htm" title="Redis主从同步详解">Redis主从同步详解</a></li>
+                        <li class="py-2"><a href="/news/article-25040.htm" title="上海宠物医院招聘管吃管住（宠物医院 上海）">上海宠物医院招聘管吃管住（宠物医院 上海）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-26-free-node-subscribe-links.htm" title="12月26日→22M/S|2024年最新免费节点V2rayC订阅链接地址分享">12月26日→22M/S|2024年最新免费节点V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-25-free-high-speed-nodes.htm" title="11月25日→20.2M/S|2024年最新免费节点V2rayC订阅链接地址">11月25日→20.2M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-27360.htm" title="1970年农历四月二十七是什么星座女（1970年阴历四月二十四阳历是多少号）">1970年农历四月二十七是什么星座女（1970年阴历四月二十四阳历是多少号）</a></li>
+                        <li class="py-2"><a href="/news/article-29221.htm" title="附近宠物领养店电话地址（宠物领养站哪里有）">附近宠物领养店电话地址（宠物领养站哪里有）</a></li>
                         <li class="py-2"><a href="/news/article-18675.htm" title="宠物粮食市场报告分析怎么写（宠物粮食销售）">宠物粮食市场报告分析怎么写（宠物粮食销售）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-15-free-subscribe-node.htm" title="1月15日→19.5M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">1月15日→19.5M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-24119.htm" title="猫不打疫苗有什么后果（猫不打疫苗危险吗）">猫不打疫苗有什么后果（猫不打疫苗危险吗）</a></li>
                         <li class="py-2"><a href="/news/article-33498.htm" title="宠物医院美团好评50字通用评论 宠物医院美团好评50字通用评论怎么写">宠物医院美团好评50字通用评论 宠物医院美团好评50字通用评论怎么写</a></li>
-                        <li class="py-2"><a href="/news/article-19529.htm" title="动物疫苗稀释液首选（动物疫苗制备流程）">动物疫苗稀释液首选（动物疫苗制备流程）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-6-node-share-links.htm" title="12月6日→21.7M/S|2024年最新免费节点V2rayC订阅链接地址">12月6日→21.7M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-37338.htm" title="日本强震已致124人伤(世界周刊日本地震)">日本强震已致124人伤(世界周刊日本地震)</a></li>
-                        <li class="py-2"><a href="/news/article-24557.htm" title="宠物店驱虫一次90元贵吗（一般宠物店驱虫药卖多少钱一颗?）">宠物店驱虫一次90元贵吗（一般宠物店驱虫药卖多少钱一颗?）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-5-node-share-links.htm" title="12月5日→18.7M/S|2024年最新免费节点V2rayC订阅链接地址">12月5日→18.7M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-31114.htm" title="动物防疫疫苗种类有哪些名称（动物防疫疫苗种类有哪些名称和作用）">动物防疫疫苗种类有哪些名称（动物防疫疫苗种类有哪些名称和作用）</a></li>
                     </ul>
     </div>
 </div>
@@ -104,7 +116,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">48</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">54</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
