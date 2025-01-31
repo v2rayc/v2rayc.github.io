@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2rayc.github.io/news/article-48706.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>创建型设计模式: 单例模式(Singleton Pattern)</title>
+        <meta name="description" content="CSDN专栏: 设计模式(UML/23种模式)  单例模式(Singleton Pattern)保证一个类仅有一个实例，并提供一个访问它的全局访问点。Singleton模式属于创建型模式，创建型模式包" />
+        <link rel="icon" href="/assets/website/img/v2rayc/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2rayC免费节点分享中文站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2rayc.github.io/news/article-48706.htm" />
+    <meta property="og:site_name" content="V2rayC免费节点分享中文站" />
+    <meta property="og:title" content="创建型设计模式: 单例模式(Singleton Pattern)" />
+    <meta property="og:image" content="https://v2rayc.github.io/uploads/20241122/f384775d9ebdbc1dcee3260df1f602b0.webp" />
+        <meta property="og:release_date" content="2025-01-31T07:16:20" />
+    <meta property="og:updated_time" content="2025-01-31T07:16:20" />
+        <meta property="og:description" content="CSDN专栏: 设计模式(UML/23种模式)  单例模式(Singleton Pattern)保证一个类仅有一个实例，并提供一个访问它的全局访问点。Singleton模式属于创建型模式，创建型模式包" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="创建型设计模式: 单例模式(Singleton Pattern)">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/v2rayc/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2rayc/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ES4W43FQ84"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ES4W43FQ84');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top header-inner-pages">
+        <div class="container d-flex align-items-center">
+            <a href="/">
+                            <span class="logo me-auto">V2ray C</span>
+                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                        <li><a class="nav-link" href="#">关于</a></li>
+                    <li><a class="nav-link" href="#">联系</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>创建型设计模式: 单例模式(Singleton Pattern)</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= About Us Section ======= -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> </h1> <blockquote> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/column/details/27399.html"  rel="nofollow">CSDN专栏: 设计模式(UML/23种模式)</a></p> </blockquote> <p>单例模式(Singleton Pattern)保证一个类仅有一个实例，并提供一个访问它的全局访问点。Singleton模式属于创建型模式，创建型模式包括FactoryMethod模式，AbstractFactory模式，Singleton模式，ProtoType模式和Builder模式。</p> <h2><a id="_6" rel="nofollow"></a>模式简介</h2> <p>单例模式(Singleton Pattern)是最简单的设计模式。Singleton模式的核心结构中只包含一个单例的特殊类。通过单例模式可以保证系统中有仅仅有唯一的示例。</p> <p>GOF的《设计模式》指出单例模式的意图是：<br /> 保证一个类仅有一个实例，并提供一个访问它的全局访问点。</p> <p>Singleton模式适用于以下场景：</p> <ul> <li>当类只能有一个实例而且客户可以从一个众所周知的访问点访问它时。</li> <li>当这个唯一实例应该是通过子类化可扩展的，并且客户应该无需更改代码就能使用一个扩展的实例时。</li> </ul> <h2><a id="_18" rel="nofollow"></a>模式图解</h2> <p>单例模式保证一个类仅有一个实例，并提供一个访问它的全局访问点，是最简单的设计模式。单例模式的UML示例如下：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220821/613c03dda849c5fef0c3e3fa572939c5.jpg" alt="创建型设计模式: 单例模式(Singleton Pattern)"></p> <p>单例模式的工作过程如下：</p> <ul> <li>Singleton类中定义Instance操作，Instance操作允许客户访问它的唯一实例；</li> <li>Instance操作第一次被调用时，创建它自己的唯一实例；</li> <li>客户只能通过Instance操作访问Singleton实例；</li> </ul> <p>单例模式的有益效果如下：</p> <ul> <li>对唯一实例的受控访问 因为Singletion类封装它的唯一实例，Singleton限制了类的访问；</li> <li>Singletion模式是对全局变量的一种改进；</li> <li>扩展Singletion类的子类相对容易。</li> <li>允许可变数目的实例，实例数量可以控制</li> </ul> <h2><a id="_37" rel="nofollow"></a>模式实例</h2> <p>Android的系统服务大量使用了单例模式</p> <pre><code class="language-javascript"><code class="prism  language-javascript">libmedia<span class="token operator">/</span>AudioSystem<span class="token punctuation">.</span>cpp<span class="token punctuation">:</span><span class="token number">33</span><span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span> client singleton<span class="token keyword">for</span> AudioFlinger binder<span class="token keyword">interface</span><span class="token class-name">libmedia</span><span class="token operator">/</span>AudioSystem<span class="token punctuation">.</span>cpp<span class="token punctuation">:</span><span class="token number">683</span><span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span> client singleton<span class="token keyword">for</span> AudioPolicyService binder<span class="token keyword">interface</span><span class="token class-name">libmedia</span><span class="token operator">/</span>IMediaDeathNotifier<span class="token punctuation">.</span>cpp<span class="token punctuation">:</span><span class="token number">27</span><span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span> client singleton<span class="token keyword">for</span> binder<span class="token keyword">interface</span><span class="token class-name">to</span> services libmedia<span class="token operator">/</span>mediametadataretriever<span class="token punctuation">.</span>cpp<span class="token punctuation">:</span><span class="token number">33</span><span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span> client singleton<span class="token keyword">for</span> binder<span class="token keyword">interface</span><span class="token class-name">to</span> service</code></code></pre> <h2><a id="_47" rel="nofollow"></a>系列文章</h2> <ul> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/column/details/27399.html"  rel="nofollow">CSDN专栏: 设计模式(UML/23种模式)</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/media-tm/MTDesignPattern"  rel="nofollow">Github专栏: 设计模式(UML/23种模式)</a></li> </ul> <h2><a id="_52" rel="nofollow"></a>参考文献</h2> <ul> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://item.jd.com/10057319.html"  rel="nofollow">GOF的设计模式：可复用面向对象软件的基础</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://item.jd.com/11414555.html"  rel="nofollow">设计模式之禅</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/me115/design_patterns"  rel="nofollow">图说设计模式</a></li> </ul> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-48200.htm">怎样蒸米饭放多少水(米饭怎么蒸才好吃放多少水合适)</a></p>
+                                        <p>下一个：<a href="/news/article-48707.htm">Spring 源码BeanFactoryPostProcessor是如何执行的</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-38815.htm" title="动物疫苗厂家排名前十名有哪些品种的（动物疫苗生产厂家排名）">动物疫苗厂家排名前十名有哪些品种的（动物疫苗生产厂家排名）</a></li>
+                        <li class="py-2"><a href="/news/article-27360.htm" title="1970年农历四月二十七是什么星座女（1970年阴历四月二十四阳历是多少号）">1970年农历四月二十七是什么星座女（1970年阴历四月二十四阳历是多少号）</a></li>
+                        <li class="py-2"><a href="/news/article-39799.htm" title="动物防疫疫苗费取消的相关文件有哪些 动物防疫疫苗费取消的相关文件有哪些内容">动物防疫疫苗费取消的相关文件有哪些 动物防疫疫苗费取消的相关文件有哪些内容</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-6-free-subscribe-node.htm" title="1月6日→22M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">1月6日→22M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-27-free-subscribe-node.htm" title="1月27日→18.3M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">1月27日→18.3M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-29-free-node-subscribe.htm" title="11月29日→18.5M/S|2024年最新免费节点V2rayC订阅链接地址">11月29日→18.5M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-10-free-v2ray.htm" title="1月10日→22M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">1月10日→22M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-43271.htm" title="包含初中学历能考什么证书可以挂靠的的词条">包含初中学历能考什么证书可以挂靠的的词条</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-18-node-share-links.htm" title="12月18日→18.4M/S|2024年最新免费节点V2rayC订阅链接地址">12月18日→18.4M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-21818.htm" title="开一个宠物寄养店怎么样（开一家宠物寄养店）">开一个宠物寄养店怎么样（开一家宠物寄养店）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">13</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End About Us Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container footer-bottom clearfix">
+            <div class="copyright">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                <a href="/">V2rayC免费节点分享中文站</a> 版权所有 Powered by WordPress
+            </div>
+            <div class="credits"></div>
+        </div>
+    </footer><!-- End Footer -->
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2rayc/jquery-2.1.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/swiper/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/waypoints/noframework.waypoints.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2rayc/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+
+</body>
+
+</html>

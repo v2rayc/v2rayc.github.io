@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2rayc.github.io/news/article-47222.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>利用Nginx实现URL重定向的简单方法_nginx_</title>
+        <meta name="description" content="目录  1. 概述 2. 使用 Nginx 实现 URL 的重定向  2.1 使用场景 2.2 单纯的重定向 2.3 依据原 URL 重定向  补充：Nginx根据url参数重定向  1.判断url路" />
+        <link rel="icon" href="/assets/website/img/v2rayc/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2rayC免费节点分享中文站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2rayc.github.io/news/article-47222.htm" />
+    <meta property="og:site_name" content="V2rayC免费节点分享中文站" />
+    <meta property="og:title" content="利用Nginx实现URL重定向的简单方法_nginx_" />
+    <meta property="og:image" content="https://v2rayc.github.io/uploads/20241122/29ce7bba577b01f3c6837cc9f6828726.webp" />
+        <meta property="og:release_date" content="2025-01-28T09:30:50" />
+    <meta property="og:updated_time" content="2025-01-28T09:30:50" />
+        <meta property="og:description" content="目录  1. 概述 2. 使用 Nginx 实现 URL 的重定向  2.1 使用场景 2.2 单纯的重定向 2.3 依据原 URL 重定向  补充：Nginx根据url参数重定向  1.判断url路" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="利用Nginx实现URL重定向的简单方法_nginx_">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/v2rayc/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2rayc/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ES4W43FQ84"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ES4W43FQ84');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top header-inner-pages">
+        <div class="container d-flex align-items-center">
+            <a href="/">
+                            <span class="logo me-auto">V2ray C</span>
+                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                        <li><a class="nav-link" href="#">关于</a></li>
+                    <li><a class="nav-link" href="#">联系</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>利用Nginx实现URL重定向的简单方法_nginx_</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= About Us Section ======= -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">1. 概述</a></li> <li><a href="#_label1" rel="nofollow">2. 使用 Nginx 实现 URL 的重定向</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_1_0" rel="nofollow">2.1 使用场景</a></li> <li><a href="#_lab2_1_1" rel="nofollow">2.2 单纯的重定向</a></li> <li><a href="#_lab2_1_2" rel="nofollow">2.3 依据原 URL 重定向</a></li> </ul> <li><a href="#_label2" rel="nofollow">补充：Nginx根据url参数重定向</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_2_3" rel="nofollow">1.判断url路径</a></li> <li><a href="#_lab2_2_4" rel="nofollow">2. 判断url参数</a></li> </ul> <li><a href="#_label3" rel="nofollow">总结</a></li> <ul class="second_class_ul"></ul> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>1. 概述</h2> <p>老话说的好：取乎上，得其中；取乎中，得其下。因此我们不妨把目标定的高一些，去努力，才能得到更好回报。</p> <p>言归正传，今天我们来聊聊 使用 Nginx 实现 URL 的重定向。</p> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>2. 使用 Nginx 实现 URL 的重定向</h2> <p class="maodian"><a name="_lab2_1_0" rel="nofollow"></a></p> <h3>2.1 使用场景</h3> <p>我们日常分享一个网站地址时，常常会有这样的效果，同样一个网址，在电脑的浏览器打开，是一种效果，而在手机的浏览器打开，就会展现出另一种更适合手机显示的效果。</p> <p>通常要达到这样的效果，有两种方式实现：</p> <p>一、使用自适应的 H5 页面实现，根据窗口宽度的大小，自动调整页面的布局。</p> <p>二、使用Nginx，依据终端的不同，跳转到不同的页面，电脑打开，跳转到 PC端 使用的网页，手机打开，跳转到 手机端 使用的网页。</p> <p>今天我们介绍一下第二种方式，是如何实现的。</p> <p class="maodian"><a name="_lab2_1_1" rel="nofollow"></a></p> <h3>2.2 单纯的重定向</h3> <p>有些 URL 的重定向，新 URL 不需要继承原 URL 的参数，例如 网站首页，这种情况，在 Nginx 配置文件的 location 中使用 return 302 的方式进行跳转即可。</p> <div class="ay1code"> <pre class="brush:bash;">location / {          # 判断是否是移动端          if ( $http_user_agent ~ "(MIDP)|(WAP)|(UP.Browser)|(Smartphone)|(Obigo)|(Mobile)|(AU.Browser)|(wxd.Mms)|(WxdB.Browser)|(CLDC)|(UP.Link)|(KM.Browser)|(UCWEB)|(SEMC-Browser)|(Mini)|(Symbian)|(Palm)|(Nokia)|(Panasonic)|(MOT-)|(SonyEricsson)|(NEC-)|(Alcatel)|(Ericsson)|(BENQ)|(BenQ)|(Amoisonic)|(Amoi-)|(Capitel)|(PHILIPS)|(SAMSUNG)|(Lenovo)|(Mitsu)|(Motorola)|(SHARP)|(WAPPER)|(LG-)|(LG/)|(EG900)|(CECT)|(Compal)|(kejian)|(Bird)|(BIRD)|(G900/V1.0)|(Arima)|(CTL)|(TDG)|(Daxian)|(DAXIAN)|(DBTEL)|(Eastcom)|(EASTCOM)|(PANTECH)|(Dopod)|(Haier)|(HAIER)|(KONKA)|(KEJIAN)|(LENOVO)|(Soutec)|(SOUTEC)|(SAGEM)|(SEC-)|(SED-)|(EMOL-)|(INNO55)|(ZTE)|(iPhone)|(Android)|(Windows CE)|(Wget)|(Java)|(curl)|(Opera)" )          {              return 302 https://www.zhuifengren.com/h5/index.html;          }             proxy_pass http://myUpstream;   }  </pre> </div> <p class="maodian"><a name="_lab2_1_2" rel="nofollow"></a></p> <h3>2.3 依据原 URL 重定向</h3> <p>另一种情况就是 新 URL 需要继承原 URL 的参数，这种情况就需要使用  rewrite 对 URL 进行改写。</p> <div class="ay1code"> <pre class="brush:bash;">location / {          # 判断是否是移动端          if ( $http_user_agent ~ "(MIDP)|(WAP)|(UP.Browser)|(Smartphone)|(Obigo)|(Mobile)|(AU.Browser)|(wxd.Mms)|(WxdB.Browser)|(CLDC)|(UP.Link)|(KM.Browser)|(UCWEB)|(SEMC-Browser)|(Mini)|(Symbian)|(Palm)|(Nokia)|(Panasonic)|(MOT-)|(SonyEricsson)|(NEC-)|(Alcatel)|(Ericsson)|(BENQ)|(BenQ)|(Amoisonic)|(Amoi-)|(Capitel)|(PHILIPS)|(SAMSUNG)|(Lenovo)|(Mitsu)|(Motorola)|(SHARP)|(WAPPER)|(LG-)|(LG/)|(EG900)|(CECT)|(Compal)|(kejian)|(Bird)|(BIRD)|(G900/V1.0)|(Arima)|(CTL)|(TDG)|(Daxian)|(DAXIAN)|(DBTEL)|(Eastcom)|(EASTCOM)|(PANTECH)|(Dopod)|(Haier)|(HAIER)|(KONKA)|(KEJIAN)|(LENOVO)|(Soutec)|(SOUTEC)|(SAGEM)|(SEC-)|(SED-)|(EMOL-)|(INNO55)|(ZTE)|(iPhone)|(Android)|(Windows CE)|(Wget)|(Java)|(curl)|(Opera)" )          {              rewrite (\w+-\w+)|(\?.*)$ https://www.zhuifengren.com/h5-$1-0.html$2 redirect;                  }                 proxy_pass http://myUpstream;  }  </pre> </div> <p>rewrite 的语法是： rewrite  正则表达式  改写后的URL  redirect;</p> <p>其中 redirect 是 302 临时重定向的意思，也可以使用 permanent 关键字，代表 301 永久重定向。</p> <p>使用 rewrite 对 URL 进行改写，需要用到 正则表达式 的知识，改写后 URL 中的 $1、$2 代表正则表达式中匹配的第一个字符串和第二个字符串，这里大家可以去了解一下正则表达式，就不细说了。</p> <p>例子中的正则表达式 (\w+-\w+)|(\?.*)$，可以将原 URL：</p> <blockquote> <p>https://www.zhuifengren.com/1001-1223.jsp?v=123456</p> </blockquote> <p>改写为</p> <blockquote> <p>https://www.zhuifengren.com/h5-1001-1223-0.html?v=123456</p> </blockquote> <p class="maodian"><a name="_label2" rel="nofollow"></a></p> <h2>补充：Nginx根据url参数重定向</h2> <p class="maodian"><a name="_lab2_2_3" rel="nofollow"></a></p> <h3>1.判断url路径</h3> <div class="ay1code"> <pre class="brush:xhtml;">location / {      if ($args ~* "/product-list?param1=val1&amp;amp;param2=val2") {          rewrite ^ http://www.mysite.com/product-list/$arg_param1/$arg_param2? last;      }  }  </pre> </div> <p class="maodian"><a name="_lab2_2_4" rel="nofollow"></a></p> <h3>2. 判断url参数</h3> <div class="ay1code"> <pre class="brush:bash;">if ($arg_path = 'abc'){  	proxy_pass http://127.0.0.1/abc/$arg_path;  }  </pre> </div> <p>特别注意if is evil,nginx不提供多if判断，没有or这样的判断，所以只能用下文这种方式。</p> <div class="ay1code"> <pre class="brush:bash;">location /api/ {          if ($arg_token = '') {          	proxy_pass http://127.0.0.1/abc          }          if ($http_token = '') {               proxy_pass http://127.0.0.2/abc          }          if ($token = paraheader) {          	 proxy_pass http://127.0.0.3/abc          }          proxy_pass http://127.0.0.1:8080/app/;          proxy_redirect off;      }</pre> </div> <p class="maodian"><a name="_label3" rel="nofollow"></a></p> <h2>总结</h2> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-47221.htm">函数的返回值存储问题</a></p>
+                                        <p>下一个：<a href="/news/article-47710.htm">动物疫苗检测中心 动物疫苗检测中心电话</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-31115.htm" title="动物疫苗生产厂家排名榜 动物疫苗生产厂家排名榜前十名">动物疫苗生产厂家排名榜 动物疫苗生产厂家排名榜前十名</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-6-free-subscribe-node.htm" title="1月6日→22M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">1月6日→22M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-44765.htm" title="重庆领养宠物在哪领养（重庆领养猫在哪领养）">重庆领养宠物在哪领养（重庆领养猫在哪领养）</a></li>
+                        <li class="py-2"><a href="/news/article-32076.htm" title="宠物用品包括哪些产品（宠物用品包括哪些产品类型）">宠物用品包括哪些产品（宠物用品包括哪些产品类型）</a></li>
+                        <li class="py-2"><a href="/news/article-33498.htm" title="宠物医院美团好评50字通用评论 宠物医院美团好评50字通用评论怎么写">宠物医院美团好评50字通用评论 宠物医院美团好评50字通用评论怎么写</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-6-node-share-links.htm" title="12月6日→21.7M/S|2024年最新免费节点V2rayC订阅链接地址">12月6日→21.7M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-47711.htm" title="湖南预制菜品牌有哪些">湖南预制菜品牌有哪些</a></li>
+                        <li class="py-2"><a href="/news/article-43272.htm" title="喵汪清宠驱虫药两个月小狗能用吗（喵汪清宠驱虫药两个月小狗能用吗）">喵汪清宠驱虫药两个月小狗能用吗（喵汪清宠驱虫药两个月小狗能用吗）</a></li>
+                        <li class="py-2"><a href="/news/article-31595.htm" title="动物医院的英语怎么写单词 动物医院的英语怎么写单词怎么读">动物医院的英语怎么写单词 动物医院的英语怎么写单词怎么读</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-19-free-high-speed-nodes.htm" title="12月19日→21.7M/S|2024年最新免费节点V2rayC订阅链接地址">12月19日→21.7M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">13</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End About Us Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container footer-bottom clearfix">
+            <div class="copyright">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                <a href="/">V2rayC免费节点分享中文站</a> 版权所有 Powered by WordPress
+            </div>
+            <div class="credits"></div>
+        </div>
+    </footer><!-- End Footer -->
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2rayc/jquery-2.1.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/swiper/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/waypoints/noframework.waypoints.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2rayc/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+
+</body>
+
+</html>
