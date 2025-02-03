@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://v2rayc.github.io/news/article-19986.htm" />
@@ -8,6 +8,34 @@
     <title>将时间戳值增加微秒以将其转换为整数，MySQL将返回什么？</title>
         <meta name="description" content="借助UNIX_TIMESTAMP()函数，可以将timestamp的值转换为秒数。MySQL将忽略添加到timestamp值中的微秒，因为UNIX_TIMESTAMP的值只有10位数字。 示例 mys" />
         <link rel="icon" href="/assets/website/img/v2rayc/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2rayC免费节点分享中文站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2rayc.github.io/news/article-19986.htm" />
+    <meta property="og:site_name" content="V2rayC免费节点分享中文站" />
+    <meta property="og:title" content="将时间戳值增加微秒以将其转换为整数，MySQL将返回什么？" />
+    <meta property="og:image" content="https://v2rayc.github.io/uploads/20241122/da173c2ea0bdb40e3f8c5205c7038d42.webp" />
+        <meta property="og:release_date" content="2024-12-02T07:57:30" />
+    <meta property="og:updated_time" content="2024-12-02T07:57:30" />
+        <meta property="og:description" content="借助UNIX_TIMESTAMP()函数，可以将timestamp的值转换为秒数。MySQL将忽略添加到timestamp值中的微秒，因为UNIX_TIMESTAMP的值只有10位数字。 示例 mys" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="将时间戳值增加微秒以将其转换为整数，MySQL将返回什么？">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     <!-- Vendor CSS Files -->
@@ -84,16 +112,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-18675.htm" title="宠物粮食市场报告分析怎么写（宠物粮食销售）">宠物粮食市场报告分析怎么写（宠物粮食销售）</a></li>
-                        <li class="py-2"><a href="/news/article-21353.htm" title="狗狗疫苗可以自己打不（狗的疫苗能自己打吗）">狗狗疫苗可以自己打不（狗的疫苗能自己打吗）</a></li>
-                        <li class="py-2"><a href="/news/article-25510.htm" title="养猫是不是对人不好（养猫对人有什么影响吗）">养猫是不是对人不好（养猫对人有什么影响吗）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-1-free-subscribe-node.htm" title="12月1日→21.6M/S|2024年最新免费节点V2rayC订阅链接地址">12月1日→21.6M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-19-free-high-speed-nodes.htm" title="12月19日→21.7M/S|2024年最新免费节点V2rayC订阅链接地址">12月19日→21.7M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-6-node-share-links.htm" title="12月6日→21.7M/S|2024年最新免费节点V2rayC订阅链接地址">12月6日→21.7M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-23650.htm" title="兽用疫苗放一晚上还能用吗有效果吗视频（兽用疫苗打开后能放置多久）">兽用疫苗放一晚上还能用吗有效果吗视频（兽用疫苗打开后能放置多久）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-11-free-subscribe-node.htm" title="12月11日→21.6M/S|2024年最新免费节点V2rayC订阅链接地址">12月11日→21.6M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-27360.htm" title="1970年农历四月二十七是什么星座女（1970年阴历四月二十四阳历是多少号）">1970年农历四月二十七是什么星座女（1970年阴历四月二十四阳历是多少号）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-12-node-share-links.htm" title="12月12日→22.3M/S|2024年最新免费节点V2rayC订阅链接地址">12月12日→22.3M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-20-free-v2ray-subscribe.htm" title="1月20日→21.3M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">1月20日→21.3M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-39310.htm" title="宠物店打疫苗多少钱一针（宠物店打疫苗多少钱一针啊）">宠物店打疫苗多少钱一针（宠物店打疫苗多少钱一针啊）</a></li>
                         <li class="py-2"><a href="/news/article-26904.htm" title="Redis主从同步详解">Redis主从同步详解</a></li>
+                        <li class="py-2"><a href="/news/article-36369.htm" title="动物医院牌子设计（动物医院牌匾设计）">动物医院牌子设计（动物医院牌匾设计）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-free-high-speed-nodes.htm" title="11月30日→18.9M/S|2024年最新免费节点V2rayC订阅链接地址">11月30日→18.9M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-21-free-v2ray.htm" title="1月21日→18.2M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">1月21日→18.2M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-31594.htm" title="Kubernetes部署单元-Pod">Kubernetes部署单元-Pod</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-24-free-v2ray-subscribe.htm" title="1月24日→18.1M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">1月24日→18.1M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-22728.htm" title="数据库篇：mysql事务原理之MVCC视图+锁">数据库篇：mysql事务原理之MVCC视图+锁</a></li>
                     </ul>
     </div>
 </div>
@@ -105,7 +133,13 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">13</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
@@ -132,7 +166,7 @@
                         <a href="/privacy.htm">隐私申明</a> |
                         <a href="/sitemap.xml">网站地图</a>
                     </p>
-                <a href="/">V2rayC免费梯子节点分享官网</a> 版权所有 Powered by WordPress
+                <a href="/">V2rayC免费节点分享中文站</a> 版权所有 Powered by WordPress
             </div>
             <div class="credits"></div>
         </div>

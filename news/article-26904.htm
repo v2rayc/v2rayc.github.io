@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://v2rayc.github.io/news/article-26904.htm" />
@@ -8,6 +8,34 @@
     <title>Redis主从同步详解</title>
         <meta name="description" content="2.8版本以前 同步(snyc) 执行步骤：  从服务器发送snyc给主服务器 主服务器收到命令后，开始执行bgsave操作，将生成RDB文件，将生成的RDB文件同步给从服务。并使用一个缓冲区记录从现" />
         <link rel="icon" href="/assets/website/img/v2rayc/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2rayC免费节点分享中文站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2rayc.github.io/news/article-26904.htm" />
+    <meta property="og:site_name" content="V2rayC免费节点分享中文站" />
+    <meta property="og:title" content="Redis主从同步详解" />
+    <meta property="og:image" content="https://v2rayc.github.io/uploads/20241122/a45a67c38acd02ad0e46d473842c2e32.webp" />
+        <meta property="og:release_date" content="2024-12-17T10:13:28" />
+    <meta property="og:updated_time" content="2024-12-17T10:13:28" />
+        <meta property="og:description" content="2.8版本以前 同步(snyc) 执行步骤：  从服务器发送snyc给主服务器 主服务器收到命令后，开始执行bgsave操作，将生成RDB文件，将生成的RDB文件同步给从服务。并使用一个缓冲区记录从现" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Redis主从同步详解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     <!-- Vendor CSS Files -->
@@ -84,16 +112,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-21353.htm" title="狗狗疫苗可以自己打不（狗的疫苗能自己打吗）">狗狗疫苗可以自己打不（狗的疫苗能自己打吗）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-5-node-share-links.htm" title="12月5日→18.7M/S|2024年最新免费节点V2rayC订阅链接地址">12月5日→18.7M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-19-free-high-speed-nodes.htm" title="12月19日→21.7M/S|2024年最新免费节点V2rayC订阅链接地址">12月19日→21.7M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-14-free-node-subscribe.htm" title="12月14日→20.7M/S|2024年最新免费节点V2rayC订阅链接地址">12月14日→20.7M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-18-node-share-links.htm" title="12月18日→18.4M/S|2024年最新免费节点V2rayC订阅链接地址">12月18日→18.4M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-25966.htm" title="宠物鲜粮市场前景预测表（宠物粮市场分析）">宠物鲜粮市场前景预测表（宠物粮市场分析）</a></li>
-                        <li class="py-2"><a href="/news/article-26438.htm" title="动物医院英文短语怎么写的 动物医院英文短语怎么写的啊">动物医院英文短语怎么写的 动物医院英文短语怎么写的啊</a></li>
-                        <li class="py-2"><a href="/news/article-22728.htm" title="数据库篇：mysql事务原理之MVCC视图+锁">数据库篇：mysql事务原理之MVCC视图+锁</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-11-free-subscribe-node.htm" title="12月11日→21.6M/S|2024年最新免费节点V2rayC订阅链接地址">12月11日→21.6M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-24120.htm" title="打疫苗能吃不（打疫苗的时候能不能吃）">打疫苗能吃不（打疫苗的时候能不能吃）</a></li>
+                        <li class="py-2"><a href="/news/article-31595.htm" title="动物医院的英语怎么写单词 动物医院的英语怎么写单词怎么读">动物医院的英语怎么写单词 动物医院的英语怎么写单词怎么读</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-4-free-node-subscribe-links.htm" title="12月4日→20M/S|2024年最新免费节点V2rayC订阅链接地址">12月4日→20M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-33021.htm" title="PHP对象和参考">PHP对象和参考</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-28-free-node-subscribe-links.htm" title="1月28日→21.5M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">1月28日→21.5M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-22-free-high-speed-nodes.htm" title="12月22日→22.2M/S|2024年最新免费节点V2rayC订阅链接地址分享">12月22日→22.2M/S|2024年最新免费节点V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-12-node-share-links.htm" title="12月12日→22.3M/S|2024年最新免费节点V2rayC订阅链接地址">12月12日→22.3M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-37338.htm" title="日本强震已致124人伤(世界周刊日本地震)">日本强震已致124人伤(世界周刊日本地震)</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-25-free-high-speed-nodes.htm" title="11月25日→20.2M/S|2024年最新免费节点V2rayC订阅链接地址">11月25日→20.2M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-48706.htm" title="创建型设计模式: 单例模式(Singleton Pattern)">创建型设计模式: 单例模式(Singleton Pattern)</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-23-free-node-subscribe.htm" title="1月23日→20.2M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">1月23日→20.2M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
                     </ul>
     </div>
 </div>
@@ -105,7 +133,13 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">13</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
@@ -132,7 +166,7 @@
                         <a href="/privacy.htm">隐私申明</a> |
                         <a href="/sitemap.xml">网站地图</a>
                     </p>
-                <a href="/">V2rayC免费梯子节点分享官网</a> 版权所有 Powered by WordPress
+                <a href="/">V2rayC免费节点分享中文站</a> 版权所有 Powered by WordPress
             </div>
             <div class="credits"></div>
         </div>

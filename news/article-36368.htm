@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://v2rayc.github.io/news/article-36368.htm" />
@@ -8,6 +8,34 @@
     <title>Redis持久化机制及缓存失效解决方案</title>
         <meta name="description" content="Redis集群故障监测及哨兵机制原理解析Redis海量数据存储方案Redis Cluster  在之前的文章写过redis的实用功能，包括数据结构，主从复制结构，以及应对高并发海量数据场景下的分片re" />
         <link rel="icon" href="/assets/website/img/v2rayc/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2rayC免费节点分享中文站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2rayc.github.io/news/article-36368.htm" />
+    <meta property="og:site_name" content="V2rayC免费节点分享中文站" />
+    <meta property="og:title" content="Redis持久化机制及缓存失效解决方案" />
+    <meta property="og:image" content="https://v2rayc.github.io/uploads/20241122/e3758398715faa26534341c4d2cd7ba1.webp" />
+        <meta property="og:release_date" content="2025-01-06T09:48:54" />
+    <meta property="og:updated_time" content="2025-01-06T09:48:54" />
+        <meta property="og:description" content="Redis集群故障监测及哨兵机制原理解析Redis海量数据存储方案Redis Cluster  在之前的文章写过redis的实用功能，包括数据结构，主从复制结构，以及应对高并发海量数据场景下的分片re" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Redis持久化机制及缓存失效解决方案">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     <!-- Vendor CSS Files -->
@@ -84,16 +112,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-36853.htm" title="南京宠物猫领养中心地址电话查询（南京猫咪领养中心）">南京宠物猫领养中心地址电话查询（南京猫咪领养中心）</a></li>
-                        <li class="py-2"><a href="/news/article-33497.htm" title="动物医学实验报告（动物医学实验报告范文）">动物医学实验报告（动物医学实验报告范文）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-29-free-node-subscribe-links.htm" title="12月29日→22.9M/S|2024年最新免费节点V2rayC订阅链接地址分享">12月29日→22.9M/S|2024年最新免费节点V2rayC订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/news/article-22275.htm" title="HamsterBear F1C200s  Linux v5.17 RTL8188EUS 适配">HamsterBear F1C200s  Linux v5.17 RTL8188EUS 适配</a></li>
-                        <li class="py-2"><a href="/news/article-19987.htm" title="同安哪里有宠物医院最好（同安宠物狗店）">同安哪里有宠物医院最好（同安宠物狗店）</a></li>
-                        <li class="py-2"><a href="/news/article-22728.htm" title="数据库篇：mysql事务原理之MVCC视图+锁">数据库篇：mysql事务原理之MVCC视图+锁</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-28-free-subscribe-node.htm" title="11月28日→22.6M/S|2024年最新免费节点V2rayC订阅链接地址">11月28日→22.6M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-19530.htm" title="小型饲料颗粒机价格（小型饲料颗粒机价格是多少）">小型饲料颗粒机价格（小型饲料颗粒机价格是多少）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-29-free-node-subscribe.htm" title="11月29日→18.5M/S|2024年最新免费节点V2rayC订阅链接地址">11月29日→18.5M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-32554.htm" title="宠物领养店怎么收费的（宠物店领养需要钱吗）">宠物领养店怎么收费的（宠物店领养需要钱吗）</a></li>
+                        <li class="py-2"><a href="/news/article-25966.htm" title="宠物鲜粮市场前景预测表（宠物粮市场分析）">宠物鲜粮市场前景预测表（宠物粮市场分析）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-1-free-subscribe-node.htm" title="1月1日→19.1M/S|2025年最新免费节点V2rayC订阅链接地址分享">1月1日→19.1M/S|2025年最新免费节点V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-31114.htm" title="动物防疫疫苗种类有哪些名称（动物防疫疫苗种类有哪些名称和作用）">动物防疫疫苗种类有哪些名称（动物防疫疫苗种类有哪些名称和作用）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-27-free-subscribe-node.htm" title="1月27日→18.3M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">1月27日→18.3M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-30163.htm" title="泰安宠物医院电话（泰安宠物医院电话24小时）">泰安宠物医院电话（泰安宠物医院电话24小时）</a></li>
+                        <li class="py-2"><a href="/news/article-38814.htm" title="天津宠物领养中心有哪些公司 天津宠物领养中心有哪些公司招聘">天津宠物领养中心有哪些公司 天津宠物领养中心有哪些公司招聘</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-25-free-node-subscribe-links.htm" title="12月25日→20.8M/S|2024年最新免费节点V2rayC订阅链接地址分享">12月25日→20.8M/S|2024年最新免费节点V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-29689.htm" title="动物疫苗的重要性有哪些（动物疫苗的重要性有哪些方面）">动物疫苗的重要性有哪些（动物疫苗的重要性有哪些方面）</a></li>
+                        <li class="py-2"><a href="/news/article-40786.htm" title="树的同构 Java">树的同构 Java</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-22-node-share.htm" title="1月22日→20.8M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">1月22日→20.8M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
                     </ul>
     </div>
 </div>
@@ -105,7 +133,10 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
