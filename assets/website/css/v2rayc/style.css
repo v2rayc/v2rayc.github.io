@@ -1804,3 +1804,7 @@ section {
     padding-top: 4px;
   }
 }
+
+
+.xcblog-blog-list .item {margin-bottom: 1.5rem;}
+.xcblog-blog-list .item h3 {font-size: 1.5rem;}
