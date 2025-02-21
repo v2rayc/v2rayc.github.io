@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2rayc.github.io/news/article-59028.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>在Java中搜索字符串中的字符。</title>
+        <meta name="description" content="您可以使用String类的indexOf()方法在字符串中搜索特定字母。此方法返回字符串中单词的位置索引（如果找到）。否则返回-1。 示例 public&nbsp;class&nbsp;Test&nb" />
+        <link rel="icon" href="/assets/website/img/v2rayc/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2rayC免费节点分享中文站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2rayc.github.io/news/article-59028.htm" />
+    <meta property="og:site_name" content="V2rayC免费节点分享中文站" />
+    <meta property="og:title" content="在Java中搜索字符串中的字符。" />
+    <meta property="og:image" content="https://v2rayc.github.io/uploads/20241122/a8ee20fa3f9c222f543d729b5186b653.webp" />
+        <meta property="og:release_date" content="2025-02-19T06:35:12" />
+    <meta property="og:updated_time" content="2025-02-19T06:35:12" />
+        <meta property="og:description" content="您可以使用String类的indexOf()方法在字符串中搜索特定字母。此方法返回字符串中单词的位置索引（如果找到）。否则返回-1。 示例 public&nbsp;class&nbsp;Test&nb" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="在Java中搜索字符串中的字符。">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/v2rayc/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2rayc/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ES4W43FQ84"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ES4W43FQ84');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top header-inner-pages">
+        <div class="container d-flex align-items-center">
+            <a href="/">
+                            <span class="logo me-auto">V2rayC</span>
+                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>在Java中搜索字符串中的字符。</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= About Us Section ======= -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<p>您可以使用String类的<code>indexOf()</code>方法在字符串中搜索特定字母。此方法返回字符串中单词的位置索引（如果找到）。否则返回-1。</p> <h2>示例</h2> <pre>public&nbsp;class&nbsp;Test&nbsp;{ &nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;void&nbsp;main(String&nbsp;args[])&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;str&nbsp;=&nbsp;new&nbsp;String("hi&nbsp;welcome&nbsp;to&nbsp;Nhooo"); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;index&nbsp;=&nbsp;str.indexOf('w'); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Index&nbsp;of&nbsp;the&nbsp;letter&nbsp;w&nbsp;::&nbsp;"+index); &nbsp;&nbsp;&nbsp;} }</pre> <p>输出结果</p> <pre>Index&nbsp;of&nbsp;the&nbsp;letter&nbsp;w&nbsp;::&nbsp;3</pre> <div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-58594.htm">布偶猫最好的品种（布偶猫哪种品相好）</a></p>
+                                        <p>下一个：<a href="/news/article-59029.htm">动物医院大众点评评语怎么写好看（动物医院大众点评100字通用评论）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-50266.htm" title="开个动物医院需要办理那些证件（开设动物医院的条件有哪些?）">开个动物医院需要办理那些证件（开设动物医院的条件有哪些?）</a></li>
+                        <li class="py-2"><a href="/news/article-27823.htm" title="佳雯宠物医院客服电话是多少啊（佳雯宠物医院总部地址）">佳雯宠物医院客服电话是多少啊（佳雯宠物医院总部地址）</a></li>
+                        <li class="py-2"><a href="/news/article-55076.htm" title="动物医院诊疗许可证办理程序规定是什么（动物医院需要几个兽医资格证）">动物医院诊疗许可证办理程序规定是什么（动物医院需要几个兽医资格证）</a></li>
+                        <li class="py-2"><a href="/news/article-47711.htm" title="湖南预制菜品牌有哪些">湖南预制菜品牌有哪些</a></li>
+                        <li class="py-2"><a href="/news/article-47222.htm" title="利用Nginx实现URL重定向的简单方法_nginx_">利用Nginx实现URL重定向的简单方法_nginx_</a></li>
+                        <li class="py-2"><a href="/news/article-42280.htm" title="SSL及GMVPN握手协议详解">SSL及GMVPN握手协议详解</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-13-free-node-subscribe.htm" title="12月13日→19.1M/S|2024年最新免费节点V2rayC订阅链接地址">12月13日→19.1M/S|2024年最新免费节点V2rayC订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-60169.htm" title="动物疫苗行业排名榜（动物疫苗企业名单）">动物疫苗行业排名榜（动物疫苗企业名单）</a></li>
+                        <li class="py-2"><a href="/news/article-41268.htm" title="SpringBoot生成docx文件并返回其Base64编码">SpringBoot生成docx文件并返回其Base64编码</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-14-free-node-subscribe.htm" title="1月14日→21.1M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">1月14日→21.1M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">63</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">13</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End About Us Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container footer-bottom clearfix">
+            <div class="copyright">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                <a href="/">V2rayC免费节点分享中文站</a> 版权所有 Powered by WordPress
+            </div>
+            <div class="credits"></div>
+        </div>
+    </footer><!-- End Footer -->
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2rayc/jquery-2.1.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/swiper/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/waypoints/noframework.waypoints.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2rayc/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+
+</body>
+
+</html>
