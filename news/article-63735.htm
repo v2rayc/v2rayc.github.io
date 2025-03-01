@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2rayc.github.io/news/article-63735.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>动态矩阵（指针与堆内存分配）</title>
+        <meta name="description" content="题目描述 未知一个整数矩阵的大小，在程序运行时才会输入矩阵的行数m和列数n 要求使用指针，结合new方法，动态创建一个二维数组，并求出该矩阵的最小值和最大值，可以使用数组下标法。 不能先创建一个超大矩" />
+        <link rel="icon" href="/assets/website/img/v2rayc/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2rayC免费节点分享中文站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2rayc.github.io/news/article-63735.htm" />
+    <meta property="og:site_name" content="V2rayC免费节点分享中文站" />
+    <meta property="og:title" content="动态矩阵（指针与堆内存分配）" />
+    <meta property="og:image" content="https://v2rayc.github.io/uploads/20241122/91fe29b1e229deb38d99e6921bc5984c.webp" />
+        <meta property="og:release_date" content="2025-02-27T05:55:51" />
+    <meta property="og:updated_time" content="2025-02-27T05:55:51" />
+        <meta property="og:description" content="题目描述 未知一个整数矩阵的大小，在程序运行时才会输入矩阵的行数m和列数n 要求使用指针，结合new方法，动态创建一个二维数组，并求出该矩阵的最小值和最大值，可以使用数组下标法。 不能先创建一个超大矩" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="动态矩阵（指针与堆内存分配）">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/v2rayc/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2rayc/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ES4W43FQ84"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ES4W43FQ84');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top header-inner-pages">
+        <div class="container d-flex align-items-center">
+            <a href="/">
+                            <span class="logo me-auto">V2rayC</span>
+                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>动态矩阵（指针与堆内存分配）</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= About Us Section ======= -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-tomorrow-night"> <p>题目描述<br /> 未知一个整数矩阵的大小，在程序运行时才会输入矩阵的行数m和列数n</p> <p>要求使用指针，结合new方法，动态创建一个二维数组，并求出该矩阵的最小值和最大值，可以使用数组下标法。</p> <p>不能先创建一个超大矩阵，然后只使用矩阵的一部分空间来进行数据访问、</p> <p>创建的矩阵大小必须和输入的行数m和列数n一样</p> <p>输入<br /> 第一行输入t表示t个测试实例</p> <p>第二行输入两个数字m和n，表示第一个矩阵的行数和列数</p> <p>第三行起，连续输入m行，每行n个数字，表示输入第一个矩阵的数值</p> <p>依次输入t个实例</p> <p>输出<br /> 每行输出一个实例的最小值和最大值</p> <p>样例输入<br /> 2<br /> 2 3<br /> 33 22 11<br /> 66 88 55<br /> 3 4<br /> 19 38 45 14<br /> 22 65 87 31<br /> 91 35 52 74<br /> 样例输出<br /> 11 88<br /> 14 91</p> <pre><code class="prism language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span> <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>    <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	<span class="token keyword">int</span> m<span class="token punctuation">,</span> n<span class="token punctuation">,</span> i<span class="token punctuation">,</span> j<span class="token punctuation">;</span> 	<span class="token keyword">int</span> t<span class="token punctuation">;</span> 	cin <span class="token operator">&gt;&gt;</span> t<span class="token punctuation">;</span> 	<span class="token keyword">while</span> <span class="token punctuation">(</span>t<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 		<span class="token keyword">int</span><span class="token operator">*</span><span class="token operator">*</span> array<span class="token punctuation">;</span> 		cin <span class="token operator">&gt;&gt;</span> m <span class="token operator">&gt;&gt;</span> n<span class="token punctuation">;</span> 		array <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">int</span><span class="token operator">*</span> <span class="token punctuation">[</span>m<span class="token punctuation">]</span><span class="token punctuation">;</span> 		<span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> m<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 			array<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">;</span> 		<span class="token punctuation">}</span> 		<span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> m<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 			<span class="token keyword">for</span> <span class="token punctuation">(</span>j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 				cin <span class="token operator">&gt;&gt;</span> array<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span> 			<span class="token punctuation">}</span> 		<span class="token punctuation">}</span> 		<span class="token keyword">int</span> max <span class="token operator">=</span> array<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span> 		<span class="token keyword">int</span> min <span class="token operator">=</span> array<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span> 		<span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> m<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 			<span class="token keyword">for</span> <span class="token punctuation">(</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 				<span class="token keyword">if</span> <span class="token punctuation">(</span>array<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&gt;</span> max<span class="token punctuation">)</span> 					max <span class="token operator">=</span> array<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span> 				<span class="token keyword">if</span> <span class="token punctuation">(</span>array<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> min<span class="token punctuation">)</span> 					min <span class="token operator">=</span> array<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span> 			<span class="token punctuation">}</span> 		<span class="token punctuation">}</span> 		cout <span class="token operator">&lt;&lt;</span> min <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> max <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> 		<span class="token keyword">for</span> <span class="token punctuation">(</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> m<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 			<span class="token keyword">delete</span><span class="token punctuation">[</span><span class="token punctuation">]</span> array<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span> 		<span class="token punctuation">}</span> 		<span class="token keyword">delete</span><span class="token punctuation">[</span><span class="token punctuation">]</span> array<span class="token punctuation">;</span> 	<span class="token punctuation">}</span> <span class="token punctuation">}</span>  </code></pre> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-63132.htm">襄阳免费领养宠物猫信息网（襄阳免费领养宠物猫信息网）</a></p>
+                                        <p>下一个：<a href="/news/article-63738.htm">Zookeeper——客户端API的相关方法操作</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-45759.htm" title="淮南领养狗（淮南领养猫咪）">淮南领养狗（淮南领养猫咪）</a></li>
+                        <li class="py-2"><a href="/news/article-44765.htm" title="重庆领养宠物在哪领养（重庆领养猫在哪领养）">重庆领养宠物在哪领养（重庆领养猫在哪领养）</a></li>
+                        <li class="py-2"><a href="/news/article-51315.htm" title="动物疫苗打到人身上有事吗会传染吗视频（动物打的疫苗）">动物疫苗打到人身上有事吗会传染吗视频（动物打的疫苗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-6-node-share.htm" title="2月6日→18.6M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">2月6日→18.6M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-28759.htm" title="动物疫苗经营范围有哪些类型（动物疫苗经营许可）">动物疫苗经营范围有哪些类型（动物疫苗经营许可）</a></li>
+                        <li class="py-2"><a href="/news/article-52354.htm" title="猫粮前十排名（猫粮排行榜10强）">猫粮前十排名（猫粮排行榜10强）</a></li>
+                        <li class="py-2"><a href="/news/article-60743.htm" title="动物疫苗价格查询表图片及价格大全 动物疫苗价格查询表图片及价格大全集">动物疫苗价格查询表图片及价格大全 动物疫苗价格查询表图片及价格大全集</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-18-node-share-links.htm" title="2月18日→21.4M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">2月18日→21.4M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-8-node-share-links.htm" title="2月8日→18.7M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">2月8日→18.7M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-40786.htm" title="树的同构 Java">树的同构 Java</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">13</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End About Us Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container footer-bottom clearfix">
+            <div class="copyright">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                <a href="/">V2rayC免费节点分享中文站</a> 版权所有 Powered by WordPress
+            </div>
+            <div class="credits"></div>
+        </div>
+    </footer><!-- End Footer -->
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2rayc/jquery-2.1.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/swiper/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/waypoints/noframework.waypoints.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2rayc/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+
+</body>
+
+</html>
