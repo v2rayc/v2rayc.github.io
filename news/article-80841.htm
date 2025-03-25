@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2rayc.github.io/news/article-80841.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>VsCode调试docker中的NodeJS程序</title>
+        <meta name="description" content="最近在写NodeJS相关的项目，运行在docker容器中，也是想研究一下断点调试，于是查阅相关资料，最终顺利配置好了。 首先我选择了VsCode作为ide，并用VsCode来做NodeJS可视化deb" />
+        <link rel="icon" href="/assets/website/img/v2rayc/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2rayC免费节点分享中文站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2rayc.github.io/news/article-80841.htm" />
+    <meta property="og:site_name" content="V2rayC免费节点分享中文站" />
+    <meta property="og:title" content="VsCode调试docker中的NodeJS程序" />
+    <meta property="og:image" content="https://v2rayc.github.io/uploads/20241122/da173c2ea0bdb40e3f8c5205c7038d42.webp" />
+        <meta property="og:release_date" content="2025-03-25T08:16:43" />
+    <meta property="og:updated_time" content="2025-03-25T08:16:43" />
+        <meta property="og:description" content="最近在写NodeJS相关的项目，运行在docker容器中，也是想研究一下断点调试，于是查阅相关资料，最终顺利配置好了。 首先我选择了VsCode作为ide，并用VsCode来做NodeJS可视化deb" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="VsCode调试docker中的NodeJS程序">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/v2rayc/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2rayc/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ES4W43FQ84"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ES4W43FQ84');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top header-inner-pages">
+        <div class="container d-flex align-items-center">
+            <a href="/">
+                            <span class="logo me-auto">V2rayC</span>
+                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>VsCode调试docker中的NodeJS程序</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= About Us Section ======= -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<p>最近在写NodeJS相关的项目，运行在docker容器中，也是想研究一下断点调试，于是查阅相关资料，最终顺利配置好了。</p> <p>首先我选择了VsCode作为ide，并用VsCode来做NodeJS可视化debug的工作。</p> <p>由于VsCode 已将调试工具内置，所以只需要增加调试配置。应遵循以下步骤：</p> <p>第一步：单击首选项 -&gt; 设置，打开设置选项卡。如下面的屏幕截图。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/6aefb490fd9dc633c0e3836a644710d4.jpg" alt="VsCode调试docker中的NodeJS程序"></p> <p>第二步：在搜索输入中搜索“node debug”，你会看到Debug&gt; JavaScript:Auto Attach Filter选项，选择“smart”作为选项的值。它将启用nodeJs的调试。</p> <p><span id="docs-internal-guid-26a7aeba-7fff-377d-209d-c7868a6196b3"><img fetchpriority="high" decoding="async" src="http://img.555519.xyz/uploads3/20220509/6542dc4b4b4fa9674eb797a84823b939.jpg" alt="VsCode调试docker中的NodeJS程序" width="477" height="226"/></span></p> <p>第三步： 单击左侧工具栏上的调试图标，如图所示<span id="docs-internal-guid-e97b3309-7fff-a295-de34-334772f7f76a"><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/5bc55200c77b69cca9b3126c6438add2.jpg" alt="VsCode调试docker中的NodeJS程序" width="68" height="63"/></span>。然后单击运行和调试按钮，并添加配置。</p> <p>点击Add Configuration将跳转到一个名为 launch.json(./vscode/launch.json) 的文件，编写后的完整配置如下所示。</p> <div class="cnblogs_Highlighter"> <pre class="brush:javascript;gutter:true;">{  // Use IntelliSense to learn about possible attributes.  // Hover to view descriptions of existing attributes.  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387  "version": "0.2.0",  "configurations": [    {      "type": "node",      "request": "attach",      "name": "Debug super api in docker",      "restart": true,      "port": 7676,      "address": "localhost",      "localRoot": "${workspaceFolder}",      "remoteRoot": "/super-api",      "protocol": "inspector"    }  ] }</pre> </div> <p>对上面的配置，我简单介绍一下。由于docker中的容器是被宿主机挂载进来的，所以要单独配置一个remoteRoot配置项，它的值就是实际项目在容器中的目录路径。</p> <p>而port填写的不是项目运行的端口号，而是node命令中--inspect设置的端口号，在我的项目中我在运行该容器的时候会把这个7676的端口暴露给宿主机（真实电脑）</p> <p>编辑好这个配置文件后，就可以设置一下断点，然后点击start debug按钮即可开始debug了。</p> <p>运行的效果，如图所示。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/835046846589e603aad9de1f6cf8dd3a.jpg" alt="VsCode调试docker中的NodeJS程序"></p> <p>&nbsp;可以看到Variables面板里面有显示运行到断点处的相关变量情况，而CALL STACK部分记录调用堆，方便我们追踪整个程序的调用层级和过程。左边最下面显示的是我们设置的所有断点（breakpoint），标记红色的是被执行到的断点。</p> <p>一句话总结：<strong>一个后端程序员最基本的修养是能断点调试程序。</strong></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-80121.htm">动物医生证好考吗（动物医师证报考条件）</a></p>
+                                        <p>下一个：<a href="/news/article-80842.htm">动物医院有哪些动物 动物医院有哪些动物名字</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-68107.htm" title="免费宠物领养是不是真的假的（免费宠物领养是不是真的假的呢）">免费宠物领养是不是真的假的（免费宠物领养是不是真的假的呢）</a></li>
+                        <li class="py-2"><a href="/news/article-44765.htm" title="重庆领养宠物在哪领养（重庆领养猫在哪领养）">重庆领养宠物在哪领养（重庆领养猫在哪领养）</a></li>
+                        <li class="py-2"><a href="/news/article-74677.htm" title="Nuxt3 rc.11 填坑 配置 element-plus">Nuxt3 rc.11 填坑 配置 element-plus</a></li>
+                        <li class="py-2"><a href="/news/article-37819.htm" title="宠物粮行业分析论文题目大全及答案（宠物粮市场前景）">宠物粮行业分析论文题目大全及答案（宠物粮市场前景）</a></li>
+                        <li class="py-2"><a href="/news/article-79445.htm" title="encodeURI encodeURIComponent 的区别，和使用场景">encodeURI encodeURIComponent 的区别，和使用场景</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-21-free-node-subscribe.htm" title="3月21日→18.1M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">3月21日→18.1M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-7-free-subscribe-node.htm" title="1月7日→18.5M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">1月7日→18.5M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-73341.htm" title="动物疫苗厂家招聘业务员 动物疫苗厂家招聘业务员信息">动物疫苗厂家招聘业务员 动物疫苗厂家招聘业务员信息</a></li>
+                        <li class="py-2"><a href="/news/article-50778.htm" title="动物疫苗板块前景分析报告（动物疫苗市场分析）">动物疫苗板块前景分析报告（动物疫苗市场分析）</a></li>
+                        <li class="py-2"><a href="/news/article-53433.htm" title="中国前十宠物粮公司有哪些 中国前十宠物粮公司有哪些品牌">中国前十宠物粮公司有哪些 中国前十宠物粮公司有哪些品牌</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">75</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End About Us Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container footer-bottom clearfix">
+            <div class="copyright">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                <a href="/">V2rayC免费节点分享中文站</a> 版权所有 Powered by WordPress
+            </div>
+            <div class="credits"></div>
+        </div>
+    </footer><!-- End Footer -->
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2rayc/jquery-2.1.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/swiper/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/waypoints/noframework.waypoints.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2rayc/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+
+</body>
+
+</html>
