@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2rayc.github.io/news/article-83635.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>vue3.0引入axios</title>
+        <meta name="description" content="首先，我们要知道axios是一个库，并不是vue中的第三方插件，使用时不能通过Vue.use()安装插件，需要在原型上进行绑定 import Vue from 'vue'  import axios " />
+        <link rel="icon" href="/assets/website/img/v2rayc/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2rayC免费节点分享中文站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2rayc.github.io/news/article-83635.htm" />
+    <meta property="og:site_name" content="V2rayC免费节点分享中文站" />
+    <meta property="og:title" content="vue3.0引入axios" />
+    <meta property="og:image" content="https://v2rayc.github.io/uploads/20241122/29ce7bba577b01f3c6837cc9f6828726.webp" />
+        <meta property="og:release_date" content="2025-03-29T08:58:48" />
+    <meta property="og:updated_time" content="2025-03-29T08:58:48" />
+        <meta property="og:description" content="首先，我们要知道axios是一个库，并不是vue中的第三方插件，使用时不能通过Vue.use()安装插件，需要在原型上进行绑定 import Vue from 'vue'  import axios " />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="vue3.0引入axios">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/v2rayc/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2rayc/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ES4W43FQ84"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ES4W43FQ84');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top header-inner-pages">
+        <div class="container d-flex align-items-center">
+            <a href="/">
+                            <span class="logo me-auto">V2rayC</span>
+                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>vue3.0引入axios</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= About Us Section ======= -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>首先，我们要知道axios是一个库，并不是vue中的第三方插件，使用时不能通过Vue.use()安装插件，需要在原型上进行绑定</p> <pre><code>import Vue from 'vue'  import axios from ‘axios’  Vue.prototype.$http = axios</code></pre> <p>然而，在vue3.0，并不是直接创建的vue实例，而是通过createApp来创建的</p> <pre><code>createApp(App)</code></pre> <p>那么问题就来了，这样的话，vue3.0要通过app.config.globalProperties.$axios&nbsp;=&nbsp;axios进行挂载</p> <p>二：vue-axios</p> <p>vue-axios是将axios集成到Vue.js的小包装器，可以像插件一样进行安装</p> <p>在mian.js中引用axios，vue-axios，通过全局方法 Vue.use() 使用插件，就相当于调用install方法</p> <pre><code>import axios from 'axios'  import VueAxios from 'vue-axios'  createApp(App).use(VueAxios, axios)</code></pre> <p>即可，后续使用，还是照常用</p> <pre><code>vue.axios.get(api).then((response) =&gt; {     console.log(response.data) }) this.axios.get(api).then((response) =&gt; {      console.log (response.data) }) this.$http.get(api).then((response) =&gt;{     console.log( response.data) })</code></pre> <p>使用&nbsp;Vue&nbsp;的插件写法，更符合&nbsp;Vue&nbsp;整体生态环境。直接写原型链，感觉有些粗暴了，搞定</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-82935.htm">JDK8新特性Optional工具类</a></p>
+                                        <p>下一个：<a href="/news/article-83636.htm">小孩被猫抓伤了多久过安全期（小孩被猫抓伤多久会发病）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-57309.htm" title="全国宠物粮食基地（中国宠物粮厂家批发网）">全国宠物粮食基地（中国宠物粮厂家批发网）</a></li>
+                        <li class="py-2"><a href="/news/article-37818.htm" title="开一个宠物店大概需要多少钱呢知乎（开一个宠物店需要投资多少钱）">开一个宠物店大概需要多少钱呢知乎（开一个宠物店需要投资多少钱）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-27-free-subscribe-node.htm" title="1月27日→18.3M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">1月27日→18.3M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-36306.htm" title="宠物领养平台的设计与实现研究现状（宠物领养系统国内外现状）">宠物领养平台的设计与实现研究现状（宠物领养系统国内外现状）</a></li>
+                        <li class="py-2"><a href="/news/article-54523.htm" title="宠物粮食市场调研报告总结（宠物粮市场分析）">宠物粮食市场调研报告总结（宠物粮市场分析）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-24-free-node-subscribe-links.htm" title="2月24日→19.9M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">2月24日→19.9M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-60168.htm" title="广州宠物饲料生产企业排名（广州宠物饲料批发市场）">广州宠物饲料生产企业排名（广州宠物饲料批发市场）</a></li>
+                        <li class="py-2"><a href="/news/article-63738.htm" title="Zookeeper——客户端API的相关方法操作">Zookeeper——客户端API的相关方法操作</a></li>
+                        <li class="py-2"><a href="/news/article-74678.htm" title="Java Web实现用户登录功能">Java Web实现用户登录功能</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-19-node-share-links.htm" title="1月19日→19.4M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">1月19日→19.4M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">91</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End About Us Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container footer-bottom clearfix">
+            <div class="copyright">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                <a href="/">V2rayC免费节点分享中文站</a> 版权所有 Powered by WordPress
+            </div>
+            <div class="credits"></div>
+        </div>
+    </footer><!-- End Footer -->
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2rayc/jquery-2.1.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/swiper/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/waypoints/noframework.waypoints.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2rayc/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+
+</body>
+
+</html>
