@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2rayc.github.io/news/article-87959.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Apache Hudi 如何加速传统的批处理模式</title>
+        <meta name="description" content="1.1 数据湖摄取和计算过程 - 处理更新 在我们的用例中1-10% 是对历史记录的更新。当记录更新时，我们需要从之前的 updated_date 分区中删除之前的条目，并将条目添加到最新的分区中，在" />
+        <link rel="icon" href="/assets/website/img/v2rayc/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2rayC免费节点分享中文站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2rayc.github.io/news/article-87959.htm" />
+    <meta property="og:site_name" content="V2rayC免费节点分享中文站" />
+    <meta property="og:title" content="Apache Hudi 如何加速传统的批处理模式" />
+    <meta property="og:image" content="https://v2rayc.github.io/uploads/20241122/81c386e5888990b3448485878a1a7c43.webp" />
+        <meta property="og:release_date" content="2025-04-04T09:04:54" />
+    <meta property="og:updated_time" content="2025-04-04T09:04:54" />
+        <meta property="og:description" content="1.1 数据湖摄取和计算过程 - 处理更新 在我们的用例中1-10% 是对历史记录的更新。当记录更新时，我们需要从之前的 updated_date 分区中删除之前的条目，并将条目添加到最新的分区中，在" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Apache Hudi 如何加速传统的批处理模式">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/v2rayc/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2rayc/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ES4W43FQ84"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ES4W43FQ84');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top header-inner-pages">
+        <div class="container d-flex align-items-center">
+            <a href="/">
+                            <span class="logo me-auto">V2rayC</span>
+                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>Apache Hudi 如何加速传统的批处理模式</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= About Us Section ======= -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				</h1> <h2 id="11-数据湖摄取和计算过程---处理更新">1.1 数据湖摄取和计算过程 - 处理更新</h2> <p>在我们的用例中1-10% 是对历史记录的更新。当记录更新时，我们需要从之前的 updated_date 分区中删除之前的条目，并将条目添加到最新的分区中，在没有删除和更新功能的情况下，我们必须重新读取整个历史表分区 -&gt; 去重数据 -&gt; 用新的去重数据覆盖整个表分区</p> <h2 id="12-当前批处理过程中的挑战">1.2 当前批处理过程中的挑战</h2> <p>这个过程有效，但也有其自身的缺陷：</p> <ol> <li>时间和成本——每天都需要覆盖整个历史表</li> <li>数据版本控制——没有开箱即用的数据和清单版本控制（回滚、并发读取和写入、时间点查询、时间旅行以及相关功能不存在）</li> <li>写入放大——日常历史数据覆盖场景中的外部（或自我管理）数据版本控制增加了写入放大，从而占用更多的 S3 存储</li> </ol> <p>借助Apache Hudi，我们希望在将数据摄取到数据湖中的同时，找到更好的重复数据删除和数据版本控制优化解决方案。</p> </h1> <p>当我们开始在我们的数据湖上实现 Apache Hudi 的旅程时，我们根据表的主要用户的查询模式将表分为 2 类。</p> <ul> <li>面向ETL ：这是指我们从各种生产系统摄取到数据湖中的大多数原始/基本快照表。 如果这些表被 ETL 作业广泛使用，那么我们将每日数据分区保持在 updated_date，这样下游作业可以简单地读取最新的 updated_at 分区并（重新）处理数据。</li> <li>面向分析师：通常包括维度表和业务分析师查询的大部分计算 OLAP，分析师通常需要查看基于事务（或事件）created_date 的数据，而不太关心 updated_date。</li> </ul> <p>这是一个示例电子商务订单数据流，从摄取到数据湖到创建 OLAP，最后到业务分析师查询它</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/918f6216521338353ce69d4854b9ec63.jpg" alt="Apache Hudi 如何加速传统的批处理模式"></p> <p>由于两种类型的表的日期分区列不同，我们采用不同的策略来解决这两个用例。</p> <h2 id="21-面向分析师的表olap按-created_date-分区">2.1 面向分析师的表/OLAP（按 created_date 分区）</h2> <p>在 Hudi 中，我们需要指定分区列和主键列，以便 Hudi 可以为我们处理更新和删除。<br /> 以下是我们如何处理面向分析师的表中的更新和删除的逻辑：</p> <ul> <li>读取上游数据的 D-n 个 updated_date 分区。</li> <li>应用数据转换。 现在这个数据将只有新的插入和很少的更新记录。</li> <li>发出 hudi  upsert 操作，将处理后的数据 upsert 到目标 Hudi 表。</li> </ul> <p>由于主键和 created_date 对于退出和传入记录保持相同，Hudi 通过使用来自传入记录 created_date 和 primary_key 列的此信息获取现有记录的分区和分区文件路径。</p> <h2 id="22-面向etl按更新日期分区">2.2 面向ETL（按更新日期分区）</h2> <p>当我们开始使用 Hudi 时，在阅读了许多博客和文档之后，在 created_date 上对面向 ETL 的表进行分区似乎是合乎逻辑的。<br /> 此外 Hudi 提供增量消费功能，允许我们在 created_date 上对表进行分区，并仅获取在 D-1 或 D-n 上插入（插入或更新）的那些记录。</p> <h3 id="1-created_date分区的挑战">1. “created_date”分区的挑战</h3> <p>这种方法在理论上效果很好，但在改造传统的日常批处理过程中的增量消费时，它带来了其他一系列挑战：<br /> Hudi 维护了在不同时刻在表上执行的所有操作的时间表，这些提交包含有关作为 upsert 的一部分插入或重写的部分文件的信息，我们将此 Hudi 表称为 Commit Timeline。<br /> 这里要注意的重要信息是增量查询基于提交时间线，而不依赖于数据记录中存在的实际更新/创建日期信息。</p> <ul> <li>冷启动：当我们将现有的上游表迁移到 Hudi 时，D-1 Hudi 增量查询将获取完整的表，而不仅仅是 D-1 更新。发生这种情况是因为在开始时，整个表是通过在 D-1 提交时间线内发生的单个初始提交或多个提交创建的，并且缺少真正的增量提交信息。</li> <li>历史数据重新摄取：在每个常规增量 D-1 拉取中，我们期望仅在 D-1 上更新的记录作为输出。但是在重新摄取历史数据的情况下，会再次出现类似于前面描述的冷启动问题的问题，并且下游作业也会出现 OOM。</li> </ul> <p>作为面向 ETL 的作业的解决方法，我们尝试将数据分区保持在 updated_date 本身，然而这种方法也有其自身的挑战。</p> <h3 id="2-updated_date分区的挑战">2. “updated_date”分区的挑战</h3> <p>我们知道 Hudi 表的本地索引，Hudi 依靠索引来获取存储在数据分区本地目录中的 Row-to-Part_file 映射。因此，如果我们的表在 updated_date 进行分区，Hudi 无法跨分区自动删除重复记录。<br /> Hudi 的全局索引策略要求我们保留一个内部或外部索引来维护跨分区的数据去重。对于大数据量，每天大约 2 亿条记录，这种方法要么运行缓慢，要么因 OOM 而失败。<br /> 因此，为了解决更新日期分区的数据重复挑战，我们提出了一种全新的重复数据删除策略，该策略也具有很高的性能。</p> </h1> <ul> <li>查找更新 - 从每日增量负载中，仅过滤掉更新（1-10% 的 DI 数据）（其中 updated_date&gt; created_date）（快速，仅映射操作）</li> <li>找到过时更新 - 将这些“更新”与下游 Hudi 基表广播连接。 由于我们只获取更新的记录（仅占每日增量的 1-10%），因此可以实现高性能的广播连接。 这为我们提供了与更新记录相对应的基础 Hudi 表中的所有现有记录</li> <li>删除过时更新——在基本 Hudi 表路径上的这些“过时更新”上发出 Hudi 删除命令</li> <li>插入 - 在基本 hudi 表路径上的完整每日增量负载上发出 hudi insert 命令</li> </ul> <p>进一步优化用 true 填充陈旧更新中的 _hoodie_is_deleted 列，并将其与每日增量负载结合。 通过基本 hudi 表路径发出此数据的 upsert 命令。 它将在单个操作（和单个提交）中执行插入和删除。</p> </h1> <ol> <li>时间和成本——Hudi 在重复数据删除时不会覆盖整个表。 它只是重写接收更新的部分文件。 因此较小的 upsert 工作</li> <li>数据版本控制——Hudi 保留表版本（提交历史），因此提供实时查询（时间旅行）和表版本回滚功能。</li> <li>写入放大——由于只有部分文件被更改并保留用于数据清单版本控制，我们不需要保留完整数据的版本。 因此整体写入放大是最小的。</li> </ol> <p>作为数据版本控制的另一个好处，它解决了并发读取和写入问题，因为数据版本控制使并发读取器可以读取数据文件的版本控制副本，并且当并发写入器用新数据覆盖同一分区时不会抛出 FileNotFoundException 文件。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-87229.htm">猫粮生产流程（猫粮生产流程图解）</a></p>
+                                        <p>下一个：<a href="/news/article-87960.htm">Python求解线性规划PuLP使用教程</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-77388.htm" title="开宠物店赔钱吗（开宠物店亏损多吗）">开宠物店赔钱吗（开宠物店亏损多吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-2-clash-v2ray-ss-ssr.htm" title="3月2日→21.3M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">3月2日→21.3M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-66209.htm" title="十大垃圾猫粮 十大垃圾猫粮黑名单">十大垃圾猫粮 十大垃圾猫粮黑名单</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-30-node-share.htm" title="3月30日→18.2M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">3月30日→18.2M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-87228.htm" title="Mybaitis入门基础MyBatis的概念引入及工作原理">Mybaitis入门基础MyBatis的概念引入及工作原理</a></li>
+                        <li class="py-2"><a href="/news/article-78762.htm" title="宠物粮生产基地地址 宠物粮生产基地地址在哪里">宠物粮生产基地地址 宠物粮生产基地地址在哪里</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-31-free-high-speed-nodes.htm" title="3月31日→22.3M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">3月31日→22.3M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-84354.htm" title="spring中jdbcTemplate.batchUpdate的几种使用情况_java">spring中jdbcTemplate.batchUpdate的几种使用情况_java</a></li>
+                        <li class="py-2"><a href="/news/article-68749.htm" title="猫粮牌子有哪些（猫粮牌子大全）">猫粮牌子有哪些（猫粮牌子大全）</a></li>
+                        <li class="py-2"><a href="/news/article-68107.htm" title="免费宠物领养是不是真的假的（免费宠物领养是不是真的假的呢）">免费宠物领养是不是真的假的（免费宠物领养是不是真的假的呢）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">12</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">88</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End About Us Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container footer-bottom clearfix">
+            <div class="copyright">
+                                    <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                <a href="/">V2rayC免费节点分享中文站</a> 版权所有 Powered by WordPress
+            </div>
+            <div class="credits"></div>
+        </div>
+    </footer><!-- End Footer -->
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2rayc/jquery-2.1.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/swiper/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/waypoints/noframework.waypoints.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2rayc/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+
+</body>
+
+</html>
