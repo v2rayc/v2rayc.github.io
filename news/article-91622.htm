@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2rayc.github.io/news/article-91622.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>JavaScript相邻元素平均值的数组方法详解</title>
+        <meta name="description" content="假设我们有一个数字数组- const&nbsp;arr&nbsp;=&nbsp;[3,&nbsp;5,&nbsp;7,&nbsp;8,&nbsp;3,&nbsp;5,&nbsp;7,&nbsp;4,&" />
+        <link rel="icon" href="/assets/website/img/v2rayc/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2rayC免费节点分享中文站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2rayc.github.io/news/article-91622.htm" />
+    <meta property="og:site_name" content="V2rayC免费节点分享中文站" />
+    <meta property="og:title" content="JavaScript相邻元素平均值的数组方法详解" />
+    <meta property="og:image" content="https://v2rayc.github.io/uploads/20241122/2a570e5fc3d5d2c250c56ab8cad39e9f.webp" />
+        <meta property="og:release_date" content="2025-04-09T09:16:09" />
+    <meta property="og:updated_time" content="2025-04-09T09:16:09" />
+        <meta property="og:description" content="假设我们有一个数字数组- const&nbsp;arr&nbsp;=&nbsp;[3,&nbsp;5,&nbsp;7,&nbsp;8,&nbsp;3,&nbsp;5,&nbsp;7,&nbsp;4,&" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="JavaScript相邻元素平均值的数组方法详解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/v2rayc/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2rayc/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ES4W43FQ84"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ES4W43FQ84');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top header-inner-pages">
+        <div class="container d-flex align-items-center">
+            <a href="/">
+                            <span class="logo me-auto">V2rayC</span>
+                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>JavaScript相邻元素平均值的数组方法详解</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= About Us Section ======= -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<p>假设我们有一个数字数组-</p> <pre>const&nbsp;arr&nbsp;=&nbsp;[3,&nbsp;5,&nbsp;7,&nbsp;8,&nbsp;3,&nbsp;5,&nbsp;7,&nbsp;4,&nbsp;2,&nbsp;8,&nbsp;4,&nbsp;2,&nbsp;1];</pre> <p>我们需要编写一个函数，该函数返回一个数组，该数组包含对应元素及其前任元素的平均值。对于第一个元素，因为没有前任，所以应该返回非常元素。</p> <p>让我们为该函数编写代码，我们将使用Array.prototype.map()函数解决此问题-</p> <h2>示例</h2> <pre>const&nbsp;arr&nbsp;=&nbsp;[3,&nbsp;5,&nbsp;7,&nbsp;8,&nbsp;3,&nbsp;5,&nbsp;7,&nbsp;4,&nbsp;2,&nbsp;8,&nbsp;4,&nbsp;2,&nbsp;1]; const&nbsp;consecutiveAverage&nbsp;=&nbsp;arr&nbsp;=&gt;&nbsp;{ &nbsp;&nbsp;&nbsp;return&nbsp;arr.map((el,&nbsp;ind,&nbsp;array)&nbsp;=&gt;&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;first&nbsp;=&nbsp;(array[ind-1]&nbsp;||&nbsp;0); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;second&nbsp;=&nbsp;(1&nbsp;+&nbsp;!!ind); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;((el&nbsp;+&nbsp;first)&nbsp;/&nbsp;second); &nbsp;&nbsp;&nbsp;}); }; console.log(consecutiveAverage(arr));</pre> <p>输出结果</p> <p>这将在控制台中产生以下输出-</p> <pre>[ &nbsp;&nbsp;&nbsp;3,&nbsp;&nbsp;&nbsp;4,&nbsp;6,&nbsp;7.5,&nbsp;5.5,&nbsp;4, &nbsp;&nbsp;&nbsp;6,&nbsp;5.5,&nbsp;3,&nbsp;&nbsp;&nbsp;5,&nbsp;&nbsp;&nbsp;6,&nbsp;3, &nbsp;&nbsp;&nbsp;1.5 ]</pre> <div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-90974.htm">猫咪领养协议免费模板下载安装最新（猫咪领养）</a></p>
+                                        <p>下一个：<a href="/news/article-91624.htm">python调用c代码</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-71356.htm" title="动物医院收费标准相关规定有哪些要求（动物医院的号码是多少）">动物医院收费标准相关规定有哪些要求（动物医院的号码是多少）</a></li>
+                        <li class="py-2"><a href="/news/article-92356.htm" title="源码中的设计模式&#8211;装饰器模式_在线工具">源码中的设计模式&#8211;装饰器模式_在线工具</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-11-free-node-subscribe-links.htm" title="4月11日→21.5M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">4月11日→21.5M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-9-free-high-speed-nodes.htm" title="3月9日→19.9M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">3月9日→19.9M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-73340.htm" title="国内动物疫苗龙头企业名单最新（动物疫苗龙头股排名）">国内动物疫苗龙头企业名单最新（动物疫苗龙头股排名）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-17-node-share.htm" title="3月17日→20.4M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">3月17日→20.4M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-31-free-high-speed-nodes.htm" title="3月31日→22.3M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">3月31日→22.3M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-70686.htm" title="java遍历map、map键排序、值排序">java遍历map、map键排序、值排序</a></li>
+                        <li class="py-2"><a href="/news/article-78762.htm" title="宠物粮生产基地地址 宠物粮生产基地地址在哪里">宠物粮生产基地地址 宠物粮生产基地地址在哪里</a></li>
+                        <li class="py-2"><a href="/news/article-79445.htm" title="encodeURI encodeURIComponent 的区别，和使用场景">encodeURI encodeURIComponent 的区别，和使用场景</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">32</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">88</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End About Us Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container footer-bottom clearfix">
+            <div class="copyright">
+                                    <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                <a href="/">V2rayC免费节点分享中文站</a> 版权所有 Powered by WordPress
+            </div>
+            <div class="credits"></div>
+        </div>
+    </footer><!-- End Footer -->
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2rayc/jquery-2.1.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/swiper/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/waypoints/noframework.waypoints.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2rayc/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+
+</body>
+
+</html>

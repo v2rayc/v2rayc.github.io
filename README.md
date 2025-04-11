@@ -1,4 +1,4 @@
-# 4月4日→19.1M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享  更新时间 2025-04-04 09:23:54
+# 4月11日→18.4M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享  更新时间 2025-04-11 09:15:16
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://v2rayc.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,23 +9,23 @@
 
 ### Clash订阅链接
 
-- https://v2rayc.github.io/uploads/2025/04/0-20250404.yaml
-- https://v2rayc.github.io/uploads/2025/04/1-20250404.yaml
-- https://v2rayc.github.io/uploads/2025/04/2-20250404.yaml
-- https://v2rayc.github.io/uploads/2025/04/3-20250404.yaml
-- https://v2rayc.github.io/uploads/2025/04/4-20250404.yaml
+- https://v2rayc.github.io/uploads/2025/04/0-20250411.yaml
+- https://v2rayc.github.io/uploads/2025/04/1-20250411.yaml
+- https://v2rayc.github.io/uploads/2025/04/2-20250411.yaml
+- https://v2rayc.github.io/uploads/2025/04/3-20250411.yaml
+- https://v2rayc.github.io/uploads/2025/04/4-20250411.yaml
 
 ### V2ray订阅链接
 
-- https://v2rayc.github.io/uploads/2025/04/0-20250404.txt
-- https://v2rayc.github.io/uploads/2025/04/1-20250404.txt
-- https://v2rayc.github.io/uploads/2025/04/2-20250404.txt
-- https://v2rayc.github.io/uploads/2025/04/3-20250404.txt
-- https://v2rayc.github.io/uploads/2025/04/4-20250404.txt
+- https://v2rayc.github.io/uploads/2025/04/0-20250411.txt
+- https://v2rayc.github.io/uploads/2025/04/1-20250411.txt
+- https://v2rayc.github.io/uploads/2025/04/2-20250411.txt
+- https://v2rayc.github.io/uploads/2025/04/3-20250411.txt
+- https://v2rayc.github.io/uploads/2025/04/4-20250411.txt
 
 ### Sing-box订阅链接
 
-- https://v2rayc.github.io/uploads/2025/04/20250404.json
+- https://v2rayc.github.io/uploads/2025/04/20250411.json
 
 ## 更多clash节点订阅 ：
 
