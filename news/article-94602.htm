@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2rayc.github.io/news/article-94602.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>MySQL 索引简介</title>
+        <meta name="description" content="索引的含义和特点 索引是创建在表上的，是对数据库表中一列或多列的值进行排序的一种结构，可以提高查询速度。使用索引类似于使用新华字典的音序表，通过提取拼音，可以快速定位该数据的位置 索引有其明显的优势，" />
+        <link rel="icon" href="/assets/website/img/v2rayc/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2rayC免费节点分享中文站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2rayc.github.io/news/article-94602.htm" />
+    <meta property="og:site_name" content="V2rayC免费节点分享中文站" />
+    <meta property="og:title" content="MySQL 索引简介" />
+    <meta property="og:image" content="https://v2rayc.github.io/uploads/20241122/784df126603cf639880a84fba6c89b73.webp" />
+        <meta property="og:release_date" content="2025-04-13T07:17:35" />
+    <meta property="og:updated_time" content="2025-04-13T07:17:35" />
+        <meta property="og:description" content="索引的含义和特点 索引是创建在表上的，是对数据库表中一列或多列的值进行排序的一种结构，可以提高查询速度。使用索引类似于使用新华字典的音序表，通过提取拼音，可以快速定位该数据的位置 索引有其明显的优势，" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="MySQL 索引简介">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/v2rayc/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/v2rayc/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/v2rayc/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ES4W43FQ84"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ES4W43FQ84');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top header-inner-pages">
+        <div class="container d-flex align-items-center">
+            <a href="/">
+                            <span class="logo me-auto">V2rayC</span>
+                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>MySQL 索引简介</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= About Us Section ======= -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<p></p> <h2 id="索引的含义和特点">索引的含义和特点</h2> <p>索引是创建在表上的，是对数据库表中一列或多列的值进行排序的一种结构，可以提高查询速度。使用索引类似于使用新华字典的音序表，通过提取拼音，可以快速定位该数据的位置</p> <p>索引有其明显的优势，也有不可避免的缺点：</p> <ul> <li>创建和维护索引同样需要耗费时间，并随着数据量的增加而增加</li> <li>索引也会占用一定的物理空间</li> <li>增加、删除和修改数据时，要动态地维护索引</li> </ul> <p></p> <h2 id="索引的分类和操作">索引的分类和操作</h2> <h5 id="1-普通索引">1. 普通索引</h5> <p>所谓普通索引，就是在创建索引时，不附加任何限制条件（唯一、非空等限制），可以创建在任何数据类型的字段上</p> <p>创建表时直接创建索引</p> <pre><code class="language-sql">CREATE TABLE tablename(   	propname1 type1 [CONSTRAINT1],     propname2 type2 [CONSTRAINT2],     ...... 	INDEX|KEY [indexName] (propname1 [(length) [ASC|DESC]])   );</code></pre> <p>在已存在的表上通过 CREATE 语句创建索引</p> <pre><code class="language-sql">CREATE INDEX indexName ON tablename (propname [(length) [ASC|DESC]])</code></pre> <p>通过 ALTER TABLE 语句创建</p> <pre><code>ALTER table tablename ADD INDEX|KEY indexName(propname [(length) [ASC|DESC]])</code></pre> <h4 id="2-唯一索引">2. 唯一索引</h4> <p>所谓唯一索引，就是在创建索引时，限制索引的值必须唯一，主键就是一种特殊的唯一索引</p> <p>创建表时直接创建索引</p> <pre><code class="language-sql">CREATE TABLE tablename(   	propname1 type1 [CONSTRAINT1],     propname2 type2 [CONSTRAINT2],     ...... 	UNIQUE INDEX|KEY [indexName] (propname1 [(length) [ASC|DESC]])   );</code></pre> <p>在已存在的表上通过 CREATE 语句创建索引</p> <pre><code class="language-sql">CREATE UNIQUE INDEX indexName ON tablename (propname [(length) [ASC|DESC]])</code></pre> <p>通过 ALTER TABLE 语句创建</p> <pre><code>ALTER table tablename ADD UNIQUE INDEX|KEY indexName(propname [(length) [ASC|DESC]])</code></pre> <h4 id="3-全文索引">3. 全文索引</h4> <p>全文索引主要关联在 CHAR、VARCHAR 和 TEXT 字段上，以便能更加快速地查询数据量较大的字符串类型字段</p> <p>创建表时直接创建索引</p> <pre><code class="language-sql">CREATE TABLE tablename(   	propname1 type1 [CONSTRAINT1],     propname2 type2 [CONSTRAINT2],     ...... 	FULLTEXT INDEX|KEY [indexName] (propname1 [(length) [ASC|DESC]])   );</code></pre> <p>在已存在的表上通过 CREATE 语句创建索引</p> <pre><code class="language-sql">CREATE FULLTEXT INDEX indexName ON tablename (propname [(length) [ASC|DESC]])</code></pre> <p>通过 ALTER TABLE 语句创建</p> <pre><code>ALTER table tablename ADD FULLTEXT INDEX|KEY indexName(propname [(length) [ASC|DESC]])</code></pre> <h4 id="4-多列索引">4. 多列索引</h4> <p>所谓多列索引，是指在创建索引时关联多个字段。虽然可以通过所关联的字段进行查询，但是只有查询条件中使用了所关联字段中的第一个字段，多列索引才会被使用</p> <p>创建表时直接创建索引</p> <pre><code class="language-sql">CREATE TABLE tablename(   	propname1 type1 [CONSTRAINT1],     propname2 type2 [CONSTRAINT2],     ...... 	INDEX|KEY [indexName] (propname1 [(length) [ASC|DESC]],                            propname2 [(length) [ASC|DESC]],                            ......); );</code></pre> <p>在已存在的表上通过 CREATE 语句创建索引</p> <pre><code class="language-sql">CREATE INDEX indexName ON tablename (propname1 [(length) [ASC|DESC]],                                      propname2 [(length) [ASC|DESC]],                                      ......);</code></pre> <p>通过 ALTER TABLE 语句创建</p> <pre><code>ALTER table tablename ADD INDEX|KEY indexName(propname1 [(length) [ASC|DESC]], 											  propname2 [(length) [ASC|DESC]], 											  ......);</code></pre> <h4 id="5-删除索引">5. 删除索引</h4> <pre><code class="language-sql">DROP INDEX indexName ON tablename;</code></pre> <p></p> <h2 id="索引的设计原则">索引的设计原则</h2> <ol> <li>选择唯一性索引，可以更快速地确定某条记录</li> <li>为经常需要排序、分组和联合操作的字段建立索引</li> <li>为经常需要作为查询条件的字段建立索引</li> <li>限制索引的数目，索引越多，占用的空间就越多，修改表时对索引的重构和更新也很麻烦</li> <li>尽量使用数据量少的索引，索引的值越长，查询速度也会受影响</li> <li>尽量使用前缀来索引，对于 TEXT 和 BLOB 类型的字段，进行全文索引会很浪费时间，如果只检索字段前面的若干字段，可以提高速度</li> <li>删除不再使用或很少使用的索引</li> </ol> <p></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-94141.htm">猫粮所有品牌app下载（猫粮品牌都有哪些）</a></p>
+                                        <p>下一个：<a href="/news/article-94604.htm">成年猫打几针疫苗就够了（成年猫打疫苗一共打几针）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-65591.htm" title="聊城买狗的地方（聊城哪里有卖小狗的）">聊城买狗的地方（聊城哪里有卖小狗的）</a></li>
+                        <li class="py-2"><a href="/news/article-78763.htm" title="东北农大宠物医院电话（东北农业大学兽医院电话）">东北农大宠物医院电话（东北农业大学兽医院电话）</a></li>
+                        <li class="py-2"><a href="/news/article-70032.htm" title="Java带返回值的方法的定义和调用详解_java_">Java带返回值的方法的定义和调用详解_java_</a></li>
+                        <li class="py-2"><a href="/news/article-72009.htm" title="Java中的字符串常量池是什么？">Java中的字符串常量池是什么？</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-11-free-node-subscribe-links.htm" title="4月11日→21.5M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">4月11日→21.5M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-75348.htm" title="关于MySQL支持的所有字符集的查询是什么？">关于MySQL支持的所有字符集的查询是什么？</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-13-free-high-speed-nodes.htm" title="3月13日→20.6M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">3月13日→20.6M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-4-free-node-subscribe.htm" title="3月4日→18.2M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">3月4日→18.2M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-16-free-node-subscribe-links.htm" title="3月16日→22.6M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享">3月16日→22.6M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-89413.htm" title="宠爱国际待遇怎么样（宠爱国际ceo）">宠爱国际待遇怎么样（宠爱国际ceo）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">43</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">88</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End About Us Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container footer-bottom clearfix">
+            <div class="copyright">
+                                    <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                <a href="/">V2rayC免费节点分享中文站</a> 版权所有 Powered by WordPress
+            </div>
+            <div class="credits"></div>
+        </div>
+    </footer><!-- End Footer -->
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/v2rayc/jquery-2.1.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/swiper/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2rayc/waypoints/noframework.waypoints.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/v2rayc/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+
+</body>
+
+</html>
