@@ -1,4 +1,4 @@
-# 4月29日→22.8M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享  更新时间 2025-04-29 08:28:22
+# 4月29日→22.7M/S|免费节点Clash/SSR/V2rayC订阅链接地址分享  更新时间 2025-04-29 16:15:00
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://v2rayc.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
